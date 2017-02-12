@@ -1,2 +1,2 @@
 # tamconf
-Configuration files for Linux.
+Configuration files for Linux/Windows.
