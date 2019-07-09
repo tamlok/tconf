@@ -1,0 +1,15 @@
+patch:
+  style:
+    color_scheme: google
+    horizontal: true
+    font_point: 14
+    layout:
+      border_width: 0
+      border: 0
+      margin_x: 8
+      margin_y: 8
+      hilite_padding: 6
+      hilite_spacing: 3
+      spacing: 10
+      candidate_spacing: 12
+      round_corner: 5
