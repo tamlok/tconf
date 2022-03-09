@@ -1,2 +1,2 @@
-#!/bin/sh
-cp .tmux.conf ~/.tmux.conf
+#/bin/sh
+cp tmux.conf ~/.tmux.conf
