@@ -14,10 +14,12 @@ function Install-Font
 
     $Fonts = Get-ChildItem -Path $fontFolder -Recurse -Include '*.ttf','*.ttc','*.otf'
     $Fonts | ForEach-Object {
-        $destFile = "C:\Windows\Fonts\$($_.Name)"
+        $destFile = "$HOME\AppData\Local\Microsoft\Windows\Fonts\$($_.Name)"
         if ((Test-Path $destFile) -eq $false) {
             Write-Host "Installing font $($_.Name)"
             $objFolder.CopyHere($_.FullName, 4 + 16)
+        } else {
+            Write-Host "Font already exists: $($_.Name)"
         }
     }
 }
