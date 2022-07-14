@@ -1,4 +1,0 @@
-patch:
-  style:
-    color_scheme: google             # 方案命名，不能有空格
-    horizontal: true                        # 水平排列
