@@ -15,7 +15,30 @@ return {
     harfbuzz_features = {'calt=0', 'clig=0', 'liga=0'},
     enable_csi_u_key_encoding = true,
 
+    use_fancy_tab_bar = true,
+
+    window_frame = {
+        font_size = 12.0,
+        active_titlebar_bg = "#888888",
+        inactive_titlebar_bg = "#888888",
+    },
+
+    colors = {
+        tab_bar = {
+            -- The color of the inactive tab bar edge/divider
+            inactive_tab_edge = "#aaaaaa",
+        },
+    },
+
     automatically_reload_config = false,
+
+    launch_menu = {
+        {
+            label = "Edge",
+            args = {"cmd", "/k", "D:\\Edge\\depot_tools\\scripts\\setup\\initEdgeEnv.cmd", "D:\\Edge"},
+            cwd = "D:\\Edge\\src",
+        },
+    },
 
     disable_default_key_bindings = true,
     leader = {key="a", mods="CTRL", timeout_milliseconds=1000},
