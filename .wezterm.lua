@@ -32,14 +32,6 @@ return {
 
     automatically_reload_config = false,
 
-    launch_menu = {
-        {
-            label = "Edge",
-            args = {"cmd", "/k", "D:\\Edge\\depot_tools\\scripts\\setup\\initEdgeEnv.cmd", "D:\\Edge"},
-            cwd = "D:\\Edge\\src",
-        },
-    },
-
     disable_default_key_bindings = true,
     leader = {key="a", mods="CTRL", timeout_milliseconds=1000},
     keys = {
