@@ -47,6 +47,7 @@ return {
         {key="v", mods="LEADER", action=wezterm.action.PasteFrom("Clipboard")},
         {key="Insert", mods="SHIFT", action=wezterm.action.PasteFrom("Clipboard")},
         {key="t", mods="LEADER", action=wezterm.action.SpawnTab("CurrentPaneDomain")},
+        {key="t", mods="CTRL|SHIFT", action=wezterm.action.SpawnTab("CurrentPaneDomain")},
         {key="x", mods="LEADER", action=wezterm.action.CloseCurrentTab{confirm=true}},
         {key="n", mods="LEADER", action=wezterm.action.ActivateTabRelative(1)},
         {key="Tab", mods="CTRL", action=wezterm.action.ActivateTabRelative(1)},
