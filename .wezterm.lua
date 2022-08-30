@@ -66,4 +66,12 @@ return {
         {key="f", mods="LEADER", action=wezterm.action.Search{CaseSensitiveString=""}},
         {key="r", mods="LEADER", action=wezterm.action.ReloadConfiguration},
     },
+
+    mouse_bindings = {
+        {
+            event = {Down={streak=1, button="Right"}},
+            mods = '',
+            action = wezterm.action.PasteFrom("Clipboard"),
+        }
+    },
 }
