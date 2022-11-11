@@ -1,4 +1,44 @@
 local wezterm = require "wezterm"
+
+-- The filled in variant of the < symbol
+local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+-- The filled in variant of the > symbol
+local SOLID_RIGHT_ARROW = utf8.char(0xe0b0)
+wezterm.on(
+  'format-tab-title',
+  function(tab, tabs, panes, config, hover, max_width)
+    local edge_background = '#3b3486'
+    local background = '#624f82'
+    local foreground = '#d6e4e5'
+
+    if tab.is_active then
+      background = '#6c4ab6'
+      foreground = '#ffffff'
+    elseif hover then
+      background = '#8d72e1'
+      foreground = '#ffffff'
+    end
+
+    local edge_foreground = background
+
+    -- ensure that the titles fit in the available space,
+    -- and that we have room for the edges.
+    local title = wezterm.truncate_left(tab.active_pane.title, max_width - 2)
+
+    return {
+      { Background = { Color = edge_background } },
+      { Foreground = { Color = edge_foreground } },
+      { Text = SOLID_LEFT_ARROW },
+      { Background = { Color = background } },
+      { Foreground = { Color = foreground } },
+      { Text = title },
+      { Background = { Color = edge_background } },
+      { Foreground = { Color = edge_foreground } },
+      { Text = SOLID_RIGHT_ARROW },
+    }
+  end
+)
+
 return {
     default_prog = {"powershell"},
     default_cwd = "",
