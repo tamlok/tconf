@@ -14,8 +14,6 @@ wezterm.on(
       foreground = '#ffffff'
     end
 
-    local edge_foreground = background
-
     -- ensure that the titles fit in the available space
     local title = tab.active_pane.title
     space_start, _ = string.find(title, " ")
