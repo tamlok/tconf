@@ -34,6 +34,8 @@ return {
     default_prog = {"powershell"},
     default_cwd = "",
 
+    front_end = "WebGpu",
+
     window_close_confirmation = "NeverPrompt",
     check_for_updates = false,
     hide_tab_bar_if_only_one_tab = false,
