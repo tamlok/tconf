@@ -16,16 +16,27 @@ function Main
 
     Install-Fonts
 
-    if (!(Check-Command-Exists "scoop")) {
+    Refresh-Env
+
+    if (-Not (Check-Command-Exists "scoop")) {
+        Write-Host "Installing scoop"
         irm get.scoop.sh | iex
 
+        Refresh-Env
         scoop bucket add extras
         scoop bucket add versions
     }
 
-    Scoop-Install -command "nvim" -package "neovim-nightly"
+    Check-Admin
 
-    Scoop-Install -command "wezterm" -package "wezterm"
+    $newNvim = Scoop-Install -command "nvim" -package "neovim"
+    if ($newNvim) {
+        Setup-Neovim
+    }
+
+    return
+
+    Scoop-Install -command "wezterm" -package "wezterm-nightly --force"
 
     Scoop-Install -command "gtags" -package "global"
 
@@ -44,13 +55,17 @@ function Main
     copy .\.wezterm.lua  $HOME\.wezterm.lua
 }
 
-function Check-Admin
+function Is-Admin
 {
     $myWindowsID = [System.Security.Principal.WindowsIdentity]::GetCurrent();
     $myWindowsPrincipal = New-Object System.Security.Principal.WindowsPrincipal($myWindowsID);
     $adminRole = [System.Security.Principal.WindowsBuiltInRole]::Administrator;
+    return $myWindowsPrincipal.IsInRole($adminRole)
+}
 
-    if ($myWindowsPrincipal.IsInRole($adminRole)) {
+function Check-Admin
+{
+    if (Is-Admin) {
         return
     } else {
         Write-Host "Continue as Administrator"
@@ -89,10 +104,58 @@ function Scoop-Install
 
     if (Check-Command-Exists($command)) {
         Write-Host "$package already exists"
+        return $false
+    }
+
+    Write-Host "Installing $package"
+    scoop install $package
+    return $true
+}
+
+function Refresh-Env
+{
+    $Env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Process")
+}
+
+function Setup-Neovim
+{
+    Write-Host "Setup NeoVim"
+    Refresh-Env
+    $nvim = Get-Command 'nvim' -ErrorAction SilentlyContinue
+    if ($nvim -eq $null) {
+        Write-Host "Failed to locate NeoVim"
         return
     }
 
-    scoop install $package
+    $nvimFolder = (Get-Item $nvim.Path).Directory.FullName
+    Write-Host "NeoVim folder: $nvimFolder"
+
+    Add-Neovim-To-Context-Menu $nvimFolder
+}
+
+function Add-Neovim-To-Context-Menu
+{
+    Param([string]$nvimFolder)
+
+    $neovimKeyStr = 'Registry::HKEY_CLASSES_ROOT\*\shell\Neovim'
+    if ((Get-Item -LiteralPath "$neovimKeyStr") -eq $null) {
+        Write-Host "Create registry key $neovimKeyStr"
+        New-Item "$neovimKeyStr" > $null
+    }
+
+    $displayName = 'Edit with Neovim'
+    Set-ItemProperty -LiteralPath "$neovimKeyStr" -Name '(Default)' -Value "$displayName"
+    $icon = "`"$nvimFolder\bin\nvim-qt.exe`""
+    Set-ItemProperty -LiteralPath "$neovimKeyStr" -Name 'Icon' -Value "$icon"
+
+    $commandKeyStr = "$neovimKeyStr\command"
+    if ((Get-Item -LiteralPath "$commandKeyStr") -eq $null) {
+        Write-Host "Create registry key $commandKeyStr"
+        New-Item "$commandKeyStr" > $null
+    }
+
+    $command = "`"$nvimFolder\bin\nvim-qt.exe`" `"%1`""
+    Set-ItemProperty -LiteralPath "$commandKeyStr" -Name '(Default)' -Value "$command"
 }
 
 Main
