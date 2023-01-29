@@ -34,8 +34,6 @@ function Main
         Setup-Neovim
     }
 
-    return
-
     Scoop-Install -command "wezterm" -package "wezterm-nightly --force"
 
     Scoop-Install -command "gtags" -package "global"
