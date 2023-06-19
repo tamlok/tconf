@@ -42,11 +42,16 @@ function Main
 
     Scoop-Install -command "ctags" -package "universal-ctags"
 
-    Scoop-Install -command "python" -package "python"
+    Scoop-Install -command "python3" -package "python"
 
     Scoop-Install -command "clangd" -package "llvm"
 
     Scoop-Install -command "git" -package "git"
+
+    $newNvy = Scoop-Install -command "nvy" -package "nvy"
+    if ($newNvy) {
+        "start /b nvy" | out-file C:\Windows\nvyb.cmd
+    }
 
     python3 -m pip install --user --upgrade pynvim
 
