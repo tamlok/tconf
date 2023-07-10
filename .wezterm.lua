@@ -40,7 +40,7 @@ return {
     check_for_updates = false,
     hide_tab_bar_if_only_one_tab = false,
 
-    color_scheme = "OneHalfLight",
+    color_scheme = "One Light (base16)",
 
     font = wezterm.font("SauceCodePro Nerd Font"),
     font_size = 13,
