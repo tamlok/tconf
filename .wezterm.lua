@@ -68,6 +68,14 @@ return {
         brightness = 0.85,
     },
 
+    launch_menu = {
+        {
+            label = "EdgeTool",
+            args = {"cmd", "/k", "C:\\Edge\\depot_tools\\scripts\\setup\\initEdgeEnv.cmd", "C:\\Edge"},
+            cwd = "C:\\Edge\\src",
+        },
+    },
+
     automatically_reload_config = false,
 
     disable_default_key_bindings = true,
