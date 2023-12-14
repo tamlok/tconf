@@ -63,6 +63,11 @@ return {
         },
     },
 
+    inactive_pane_hsb = {
+        saturation = 0.9,
+        brightness = 0.85,
+    },
+
     automatically_reload_config = false,
 
     disable_default_key_bindings = true,
@@ -76,6 +81,8 @@ return {
         {key="h", mods="LEADER", action=wezterm.action.ActivatePaneDirection("Left")},
         {key="l", mods="LEADER", action=wezterm.action.ActivatePaneDirection("Right")},
         {key="z", mods="LEADER", action=wezterm.action.TogglePaneZoomState},
+        {key='{', mods='LEADER|SHIFT', action=wezterm.action.MoveTabRelative(-1)},
+        {key='}', mods='LEADER|SHIFT', action=wezterm.action.MoveTabRelative(1)},
         {key="c", mods="LEADER", action=wezterm.action.CopyTo("Clipboard")},
         {key="v", mods="LEADER", action=wezterm.action.PasteFrom("Clipboard")},
         {key="Insert", mods="SHIFT", action=wezterm.action.PasteFrom("Clipboard")},
@@ -99,7 +106,7 @@ return {
         {key="f", mods="LEADER", action=wezterm.action.Search{CaseSensitiveString=""}},
         {key="r", mods="LEADER", action=wezterm.action.ReloadConfiguration},
         -- CTRL-SHIFT-l activates the debug overlay
-        {key='L', mods='CTRL', action=wezterm.action.ShowDebugOverlay},
+        {key='l', mods='CTRL|SHIFT', action=wezterm.action.ShowDebugOverlay},
     },
 
     mouse_bindings = {
