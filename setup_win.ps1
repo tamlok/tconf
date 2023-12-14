@@ -34,6 +34,8 @@ function Main
         Setup-Neovim
     }
 
+    Scoop-Install -command "nu" -package "nu"
+
     Scoop-Install -command "wezterm" -package "wezterm-nightly --force"
 
     Scoop-Install -command "gtags" -package "global"
@@ -56,6 +58,7 @@ function Main
     python3 -m pip install --user --upgrade pynvim
 
     copy .\.wezterm.lua  $HOME\.wezterm.lua
+    copy .\nushell\*  $HOME\AppData\Roaming\nushell
 }
 
 function Is-Admin

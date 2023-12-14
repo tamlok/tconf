@@ -31,7 +31,8 @@ wezterm.on(
 )
 
 return {
-    default_prog = {"powershell"},
+    -- use NuShell by default
+    default_prog = {"nu"},
     default_cwd = "",
 
     front_end = "WebGpu",
