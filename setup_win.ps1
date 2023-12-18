@@ -59,8 +59,9 @@ function Main
 
     python3 -m pip install --user --upgrade pynvim
 
-    copy .\.wezterm.lua  $HOME\.wezterm.lua
-    copy .\nushell\*  $HOME\AppData\Roaming\nushell
+    New-Item -Force -ItemType HardLink -Path "$HOME/.wezterm.lua" -Target ".wezterm.lua"
+    New-Item -Force -ItemType HardLink -Path "$HOME/AppData\Roaming\nushell\env.nu" -Target "nushell\env.nu"
+    New-Item -Force -ItemType HardLink -Path "$HOME/AppData\Roaming\nushell\config.nu" -Target "nushell\config.nu"
 }
 
 function Is-Admin
