@@ -41,7 +41,6 @@ wezterm.on(
 
 -- use NuShell by default
 config.default_prog = {"nu"}
-config.default_cwd = ""
 
 config.front_end = "WebGpu"
 
