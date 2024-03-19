@@ -38,7 +38,7 @@ function Main
 
     Scoop-Install -command "starship" -package "starship"
 
-    Scoop-Install -command "wezterm" -package "wezterm-nightly --force"
+    # Scoop-Install -command "wezterm" -package "wezterm-nightly --force"
 
     Scoop-Install -command "gtags" -package "global"
 
@@ -59,7 +59,8 @@ function Main
 
     python3 -m pip install --user --upgrade pynvim
 
-    New-Item -Force -ItemType HardLink -Path "$HOME/.wezterm.lua" -Target ".wezterm.lua"
+    # New-Item -Force -ItemType HardLink -Path "$HOME/.wezterm.lua" -Target ".wezterm.lua"
+    New-Item -Force -ItemType HardLink -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Target "terminal\settings.json"
     New-Item -Force -ItemType HardLink -Path "$HOME/AppData\Roaming\nushell\env.nu" -Target "nushell\env.nu"
     New-Item -Force -ItemType HardLink -Path "$HOME/AppData\Roaming\nushell\config.nu" -Target "nushell\config.nu"
 }
