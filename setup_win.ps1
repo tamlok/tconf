@@ -54,15 +54,17 @@ function Main
 
     $newNvy = Scoop-Install -command "nvy" -package "nvy"
     if ($newNvy) {
-        "start /b nvy" | out-file C:\Windows\nvyb.cmd
+        $CMD = "start /b nvy"
+        $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+        [System.IO.File]::WriteAllLines("C:\Windows\nvyb.cmd", $CMD, $Utf8NoBomEncoding)
     }
 
     python3 -m pip install --user --upgrade pynvim
 
     # New-Item -Force -ItemType HardLink -Path "$HOME/.wezterm.lua" -Target ".wezterm.lua"
     New-Item -Force -ItemType HardLink -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Target "terminal\settings.json"
-    New-Item -Force -ItemType HardLink -Path "$HOME/AppData\Roaming\nushell\env.nu" -Target "nushell\env.nu"
-    New-Item -Force -ItemType HardLink -Path "$HOME/AppData\Roaming\nushell\config.nu" -Target "nushell\config.nu"
+    New-Item -Force -ItemType HardLink -Path "$HOME\AppData\Roaming\nushell\env.nu" -Target "nushell\env.nu"
+    New-Item -Force -ItemType HardLink -Path "$HOME\AppData\Roaming\nushell\config.nu" -Target "nushell\config.nu"
 }
 
 function Is-Admin
