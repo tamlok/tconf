@@ -1,5 +1,17 @@
 local wezterm = require "wezterm"
 
+local is_linux = function()
+ return wezterm.target_triple:find("linux") ~= nil
+end
+
+local is_win = function()
+ return wezterm.target_triple:find("windows") ~= nil
+end
+
+local is_macos = function()
+ return wezterm.target_triple:find("darwin") ~= nil
+end
+
 -- This table will hold the configuration.
 local config = {}
 
@@ -40,7 +52,9 @@ wezterm.on(
 )
 
 -- use NuShell by default
-config.default_prog = {"nu"}
+if is_win() then
+  config.default_prog = {"nu"}
+end
 
 config.front_end = "WebGpu"
 
