@@ -92,9 +92,14 @@ config.inactive_pane_hsb = {
 
 config.launch_menu = {
     {
-        label = "EdgeTool",
+        label = "CEdgeTool",
         args = {"cmd", "/k", "C:\\Edge\\depot_tools\\scripts\\setup\\initEdgeEnv.cmd", "C:\\Edge"},
         cwd = "C:\\Edge\\src",
+    },
+    {
+        label = "QEdgeTool",
+        args = {"cmd", "/k", "Q:\\Edge\\depot_tools\\scripts\\setup\\initEdgeEnv.cmd", "Q:\\Edge"},
+        cwd = "Q:\\Edge\\src",
     },
 }
 
