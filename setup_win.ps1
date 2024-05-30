@@ -36,8 +36,6 @@ function Main
 
     Scoop-Install -command "nu" -package "nu"
 
-    Scoop-Install -command "starship" -package "starship"
-
     Scoop-Install -command "wezterm" -package "wezterm-nightly"
 
     Scoop-Install -command "gtags" -package "global"
