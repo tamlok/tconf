@@ -33,7 +33,6 @@
             {
                 "altGrAliasing": true,
                 "antialiasingMode": "grayscale",
-                "closeOnExit": "graceful",
                 "commandline": "nu.exe",
                 "cursorShape": "filledBox",
                 "guid": "{0da47a19-3b10-4d4d-a52f-7f1dd6ef4e44}",
@@ -55,7 +54,6 @@
             {
                 "altGrAliasing": true,
                 "antialiasingMode": "grayscale",
-                "closeOnExit": "automatic",
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -NoExit -NoLogo -File Q:\\Edge\\depot_tools\\scripts\\setup\\initEdgeEnv.ps1 Q:\\Edge",
                 "cursorShape": "filledBox",
                 "guid": "{a5492229-ae19-4b6a-8234-7f228a1f45a8}",
