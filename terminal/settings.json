@@ -9,31 +9,31 @@
     "defaultProfile": "{0da47a19-3b10-4d4d-a52f-7f1dd6ef4e44}",
     "experimental.detectURLs": false,
     "launchMode": "maximized",
-    "newTabMenu": 
+    "newTabMenu":
     [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
+    "profiles":
     {
-        "defaults": 
+        "defaults":
         {
             "colorScheme": "One Half Light",
             "cursorShape": "filledBox",
             "experimental.retroTerminalEffect": false,
-            "font": 
+            "font":
             {
                 "face": "SauceCodePro Nerd Font Mono",
                 "size": 13.0
             }
         },
-        "list": 
+        "list":
         [
             {
                 "altGrAliasing": true,
                 "antialiasingMode": "grayscale",
-                "closeOnExit": "automatic",
+                "closeOnExit": "graceful",
                 "commandline": "nu.exe",
                 "cursorShape": "filledBox",
                 "guid": "{0da47a19-3b10-4d4d-a52f-7f1dd6ef4e44}",
@@ -56,22 +56,6 @@
                 "altGrAliasing": true,
                 "antialiasingMode": "grayscale",
                 "closeOnExit": "automatic",
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -NoExit -NoLogo -File C:\\Edge\\depot_tools\\scripts\\setup\\initEdgeEnv.ps1 C:\\Edge",
-                "cursorShape": "filledBox",
-                "guid": "{937bcd5b-868f-4011-b7f9-861068edd447}",
-                "hidden": false,
-                "historySize": 9001,
-                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
-                "name": "EdgeOnC",
-                "padding": "8, 8, 8, 8",
-                "snapOnInput": true,
-                "startingDirectory": "%USERPROFILE%",
-                "useAcrylic": false
-            },
-            {
-                "altGrAliasing": true,
-                "antialiasingMode": "grayscale",
-                "closeOnExit": "automatic",
                 "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -ExecutionPolicy RemoteSigned -NoExit -NoLogo -File Q:\\Edge\\depot_tools\\scripts\\setup\\initEdgeEnv.ps1 Q:\\Edge",
                 "cursorShape": "filledBox",
                 "guid": "{a5492229-ae19-4b6a-8234-7f228a1f45a8}",
@@ -85,7 +69,7 @@
                 "useAcrylic": false
             },
             {
-                "colorScheme": 
+                "colorScheme":
                 {
                     "light": "One Half Light"
                 },
@@ -113,7 +97,7 @@
             }
         ]
     },
-    "schemes": 
+    "schemes":
     [
         {
             "background": "#0C0C0C",
