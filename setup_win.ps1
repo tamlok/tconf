@@ -63,6 +63,13 @@ function Main
     New-Item -Force -ItemType HardLink -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Target "terminal\settings.json"
     New-Item -Force -ItemType HardLink -Path "$HOME\AppData\Roaming\nushell\env.nu" -Target "nushell\env.nu"
     New-Item -Force -ItemType HardLink -Path "$HOME\AppData\Roaming\nushell\config.nu" -Target "nushell\config.nu"
+
+    $opencodeFolder = $env:USERPROFILE + '\.config\opencode'
+    if (Test-Path -Path $opencodeFolder) {
+        Remove-Item -Path "$opencodeFolder" -Recurse -Force
+    }
+    Write-Host "Creating symlink to $opencodeFolder"
+    New-Item -ItemType Junction -Path $opencodeFolder -Value $PSScriptRoot\opencode
 }
 
 function Is-Admin
