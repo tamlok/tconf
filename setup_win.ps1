@@ -70,6 +70,9 @@ function Main
     }
     Write-Host "Creating symlink to $opencodeFolder"
     New-Item -ItemType Junction -Path $opencodeFolder -Value $PSScriptRoot\opencode
+
+    # Opencode uses `EDITOR` environment variable to detect the editor
+    setx EDITOR "nvim"
 }
 
 function Is-Admin
