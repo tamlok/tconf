@@ -36,7 +36,7 @@ function Main
 
     Scoop-Install -command "nu" -package "nu"
 
-    Scoop-Install -command "wezterm" -package "wezterm-nightly"
+    Scoop-Install -command "wezterm" -package "wezterm"
 
     Scoop-Install -command "gtags" -package "global"
 
@@ -45,10 +45,6 @@ function Main
     Scoop-Install -command "ctags" -package "universal-ctags"
 
     Scoop-Install -command "python3" -package "python"
-
-    Scoop-Install -command "clangd" -package "llvm"
-
-    Scoop-Install -command "git" -package "git"
 
     $newNvy = Scoop-Install -command "nvy" -package "nvy"
     if ($newNvy) {
