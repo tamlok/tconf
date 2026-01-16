@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "github-copilot/claude-sonnet-4.5",
+  "model": "github-copilot/GPT-5.2-Codex",
   "permission": {
     "bash": {
       "rg *": "allow"
