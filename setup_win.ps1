@@ -36,13 +36,15 @@ function Main
 
     Scoop-Install -command "nu" -package "nu"
 
-    Scoop-Install -command "wezterm" -package "wezterm"
+    Scoop-Install -command "wezterm" -package "wezterm-nightly"
 
     Scoop-Install -command "gtags" -package "global"
 
     Scoop-Install -command "rg" -package "ripgrep"
 
     Scoop-Install -command "ctags" -package "universal-ctags"
+
+    Scoop-Install -command "opencode" -package "opencode"
 
     Scoop-Install -command "python3" -package "python"
 

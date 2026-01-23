@@ -5,5 +5,7 @@
     "bash": {
       "rg *": "allow"
     }
-  }
+  },
+  "default_agent": "plan",
+  "theme": "nord"
 }
