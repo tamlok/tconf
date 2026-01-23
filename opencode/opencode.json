@@ -7,5 +7,6 @@
     }
   },
   "default_agent": "plan",
-  "theme": "nord"
+  "theme": "nord",
+  "snapshot": false
 }
