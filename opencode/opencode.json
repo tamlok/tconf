@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "github-copilot/gpt-5.2-codex",
+  "model": "github-copilot/claude-opus-4.5",
   "permission": {
     "bash": {
       "rg *": "allow"
@@ -8,5 +8,8 @@
   },
   "default_agent": "plan",
   "theme": "nord",
-  "snapshot": false
+  "snapshot": false,
+  "plugin": [
+    "oh-my-opencode"
+  ]
 }
