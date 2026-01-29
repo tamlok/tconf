@@ -1,14 +1,77 @@
 {
+  "lsp": {
+    "clangd": {
+      "command": [
+        "clangd",
+        "--background-index"
+      ],
+      "extensions": [
+        ".c",
+        ".cpp",
+        ".h",
+        ".hpp",
+        ".cc",
+        ".cxx"
+      ]
+    },
+    "typescript": {
+      "command": [
+        "typescript-language-server",
+        "--stdio"
+      ],
+      "extensions": [
+        ".js",
+        ".jsx",
+        ".ts",
+        ".tsx",
+        ".mjs",
+        ".cjs"
+      ]
+    }
+  },
+  "agents": {
+    "explore": {
+      "model": "github-copilot/gpt-5-mini"
+    },
+    "librarian": {
+      "model": "github-copilot/claude-sonnet-4.5"
+    },
+    "oracle": {
+      "model": "github-copilot/gpt-5.2",
+      "variant": "high"
+    },
+    "prometheus": {
+      "model": "github-copilot/claude-opus-4.5",
+      "variant": "max"
+    },
+    "sisyphus": {
+      "model": "github-copilot/claude-sonnet-4.5"
+    },
+    "metis": {
+      "model": "github-copilot/claude-opus-4.5",
+      "variant": "max"
+    },
+    "momus": {
+      "model": "github-copilot/gpt-5.2",
+      "variant": "medium"
+    },
+    "atlas": {
+      "model": "github-copilot/claude-sonnet-4.5"
+    },
+    "multimodal-looker": {
+      "model": "github-copilot/gemini-3-flash"
+    }
+  },
   "categories": {
     "visual-engineering": {
-      "model": "github-copilot/gemini-3-pro-preview"
+      "model": "github-copilot/gemini-3-pro"
     },
     "ultrabrain": {
       "model": "github-copilot/gpt-5.2-codex",
       "variant": "xhigh"
     },
     "artistry": {
-      "model": "github-copilot/gemini-3-pro-preview",
+      "model": "github-copilot/gemini-3-pro",
       "variant": "max"
     },
     "quick": {
@@ -18,11 +81,12 @@
       "model": "github-copilot/claude-sonnet-4.5"
     },
     "unspecified-high": {
-      "model": "github-copilot/claude-opus-4.5",
+      "model": "github-copilot/claude-sonnet-4.5",
       "variant": "max"
     },
     "writing": {
-      "model": "github-copilot/gemini-3-flash-preview"
+      "model": "github-copilot/gemini-3-flash"
     }
-  }
+  },
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json"
 }

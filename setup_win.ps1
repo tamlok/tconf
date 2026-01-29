@@ -36,7 +36,7 @@ function Main
 
     Scoop-Install -command "nu" -package "nu"
 
-    Scoop-Install -command "wezterm" -package "wezterm-nightly"
+    # Scoop-Install -command "wezterm" -package "wezterm-nightly"
 
     Scoop-Install -command "gtags" -package "global"
 
@@ -71,6 +71,9 @@ function Main
 
     # Opencode uses `EDITOR` environment variable to detect the editor
     setx EDITOR "nvim"
+
+    # Add neovim mason bin to user PATH
+    [Environment]::SetEnvironmentVariable("Path", "$env:LOCALAPPDATA\nvim-data\mason\bin;" + [Environment]::GetEnvironmentVariable("Path", "User"), "User")
 }
 
 function Is-Admin
