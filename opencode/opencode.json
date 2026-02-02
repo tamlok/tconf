@@ -7,7 +7,7 @@
     }
   },
   "default_agent": "plan",
-  "theme": "opencode",
+  "theme": "everforest",
   "snapshot": false,
   "plugin": [
     "oh-my-opencode@latest"
