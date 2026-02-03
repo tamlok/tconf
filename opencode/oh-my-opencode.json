@@ -75,7 +75,7 @@
       "variant": "max"
     },
     "quick": {
-      "model": "github-copilot/claude-haiku-4.5"
+      "model": "opencode/kimi-k2.5-free"
     },
     "unspecified-low": {
       "model": "github-copilot/claude-sonnet-4.5"
@@ -89,7 +89,7 @@
     }
   },
   "background_task": {
-    "defaultConcurrency": 2,
+    "defaultConcurrency": 5,
     "providerConcurrency": {
       "github-copilot": 2
     }
