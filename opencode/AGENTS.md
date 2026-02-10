@@ -10,6 +10,7 @@ You MUST follow this workflow strictly:
 8. Do not truncate paths. Do not guess directory names.
 9. If unsure, ask a clarification question BEFORE generating a patch.
 10. Do not introduce unnecessary trailing spaces.
-11. We are working on Windows by default, thus prefer Powershell to Bash.
+11. Prefer Powershell to Bash.
+12. Use the same line endings as existing lines (if none, then prefer unix style).
 
 After listing files and confirming existence, then and only then generate the patch.

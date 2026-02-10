@@ -59,7 +59,7 @@
       "model": "github-copilot/claude-sonnet-4.5"
     },
     "multimodal-looker": {
-      "model": "github-copilot/gemini-3-flash"
+      "model": "github-copilot/gemini-3-flash-preview"
     }
   },
   "categories": {
@@ -85,7 +85,7 @@
       "variant": "max"
     },
     "writing": {
-      "model": "github-copilot/gemini-3-flash"
+      "model": "github-copilot/gemini-3-flash-preview"
     }
   },
   "background_task": {
