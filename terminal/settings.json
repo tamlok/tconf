@@ -20,7 +20,7 @@
     {
         "defaults":
         {
-            "colorScheme": "One Half Light (modified)",
+            "colorScheme": "Everforest Dark Medium",
             "cursorShape": "filledBox",
             "experimental.retroTerminalEffect": false,
             "font":
@@ -53,10 +53,6 @@
                 "name": "Windows PowerShell"
             },
             {
-                "colorScheme":
-                {
-                    "light": "One Half Light (modified)"
-                },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt"
@@ -100,31 +96,33 @@
     "schemes":
     [
         {
-            "background": "#FAFAFA",
-            "black": "#383A42",
-            "blue": "#0184BC",
-            "brightBlack": "#4F525D",
-            "brightBlue": "#61AFEF",
-            "brightCyan": "#56B5C1",
-            "brightGreen": "#46C348",
-            "brightPurple": "#C577DD",
-            "brightRed": "#DF6C75",
-            "brightWhite": "#B0B0B0",
-            "brightYellow": "#FF8712",
-            "cursorColor": "#4F525D",
-            "cyan": "#0997B3",
-            "foreground": "#383A42",
-            "green": "#3AA613",
-            "name": "One Half Light (modified)",
-            "purple": "#A626A4",
-            "red": "#E45649",
-            "selectionBackground": "#838DFA",
-            "white": "#919191",
-            "yellow": "#C16E1D"
+	        "background": "#2D353B",
+	        "black": "#475258",
+	        "blue": "#7FBBB3",
+	        "brightBlack": "#4B565C",
+	        "brightBlue": "#7FBBB3",
+	        "brightCyan": "#83C092",
+
+	        "brightGreen": "#A7C080",
+	        "brightPurple": "#D699B6",
+	        "brightRed": "#E67E80",
+	        "brightWhite": "#D3C6AA",
+	        "brightYellow": "#DBBC7F",
+	        "cursorColor": "#FFFFFF",
+	        "cyan": "#83C092",
+	        "foreground": "#D3C6AA",
+
+	        "green": "#A7C080",
+	        "name": "Everforest Dark Medium",
+	        "purple": "#D699B6",
+	        "red": "#E67E80",
+	        "selectionBackground": "#FFFFFF",
+	        "white": "#D3C6AA",
+	        "yellow": "#DBBC7F"
         }
     ],
     "showTabsInTitlebar": true,
-    "theme": "light",
+    "theme": "dark",
     "themes": [],
     "useAcrylicInTabRow": true
 }
