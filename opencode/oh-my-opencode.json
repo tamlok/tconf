@@ -91,7 +91,7 @@
   "background_task": {
     "defaultConcurrency": 5,
     "providerConcurrency": {
-      "github-copilot": 2
+      "github-copilot": 3
     }
   },
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json"

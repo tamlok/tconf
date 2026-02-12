@@ -12,5 +12,6 @@ You MUST follow this workflow strictly:
 10. Do not introduce unnecessary trailing spaces.
 11. Prefer Powershell to Bash.
 12. Use the same line endings as existing lines (if none, then prefer unix style).
+13. Do not add opencode related info in commit message
 
 After listing files and confirming existence, then and only then generate the patch.
