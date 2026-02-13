@@ -12,6 +12,7 @@ You MUST follow this workflow strictly:
 10. Do not introduce unnecessary trailing spaces.
 11. Prefer Powershell to Bash.
 12. Use the same line endings as existing lines (if none, then prefer unix style).
-13. Do not add opencode related info in commit message
+13. Do not add opencode, oh-my-opencode, UltraWork, Sisyphus, or any AI/agent-related info in commit messages. Commit messages should look like they were written by a human developer.
+14. Always commit at specific time 22:22 (if it is not reached yet today, use that of yesterday)
 
 After listing files and confirming existence, then and only then generate the patch.
