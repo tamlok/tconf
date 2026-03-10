@@ -34,21 +34,21 @@
       "model": "github-copilot/gpt-5-mini"
     },
     "librarian": {
-      "model": "github-copilot/claude-sonnet-4.5"
+      "model": "github-copilot/claude-sonnet-4.6"
     },
     "oracle": {
       "model": "github-copilot/gpt-5.2",
       "variant": "high"
     },
     "prometheus": {
-      "model": "github-copilot/claude-opus-4.5",
+      "model": "github-copilot/claude-opus-4.6",
       "variant": "max"
     },
     "sisyphus": {
-      "model": "github-copilot/claude-opus-4.5"
+      "model": "github-copilot/claude-opus-4.6"
     },
     "metis": {
-      "model": "github-copilot/claude-opus-4.5",
+      "model": "github-copilot/claude-opus-4.6",
       "variant": "max"
     },
     "momus": {
@@ -56,7 +56,7 @@
       "variant": "medium"
     },
     "atlas": {
-      "model": "github-copilot/claude-sonnet-4.5"
+      "model": "github-copilot/claude-sonnet-4.6"
     },
     "multimodal-looker": {
       "model": "github-copilot/gemini-3-flash-preview"
@@ -78,10 +78,10 @@
       "model": "opencode/kimi-k2.5-free"
     },
     "unspecified-low": {
-      "model": "github-copilot/claude-sonnet-4.5"
+      "model": "github-copilot/claude-sonnet-4.6"
     },
     "unspecified-high": {
-      "model": "github-copilot/claude-sonnet-4.5",
+      "model": "github-copilot/claude-sonnet-4.6",
       "variant": "max"
     },
     "writing": {
