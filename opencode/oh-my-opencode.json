@@ -37,7 +37,7 @@
       "model": "github-copilot/claude-sonnet-4.6"
     },
     "oracle": {
-      "model": "github-copilot/gpt-5.2",
+      "model": "github-copilot/gpt-5.4",
       "variant": "high"
     },
     "prometheus": {
@@ -52,7 +52,7 @@
       "variant": "max"
     },
     "momus": {
-      "model": "github-copilot/gpt-5.2",
+      "model": "github-copilot/gpt-5.4",
       "variant": "medium"
     },
     "atlas": {
@@ -67,7 +67,7 @@
       "model": "github-copilot/gemini-3-pro"
     },
     "ultrabrain": {
-      "model": "github-copilot/gpt-5.2-codex",
+      "model": "github-copilot/gpt-5.3-codex",
       "variant": "xhigh"
     },
     "artistry": {
@@ -75,7 +75,7 @@
       "variant": "max"
     },
     "quick": {
-      "model": "opencode/kimi-k2.5-free"
+      "model": "opencode/claude-sonnect-4.6"
     },
     "unspecified-low": {
       "model": "github-copilot/claude-sonnet-4.6"

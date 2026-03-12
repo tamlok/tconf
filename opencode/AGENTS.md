@@ -12,7 +12,6 @@ You MUST follow this workflow strictly:
 10. Do not introduce unnecessary trailing spaces
 11. Prefer Powershell to Bash
 12. Use the same line endings as existing lines (if none, then prefer unix style)
-13. Do not add opencode, oh-my-opencode, UltraWork, Sisyphus, or any AI/agent-related info in commit messages
-14. Always commit at a random time at night (if it is not reached yet today, use that of yesterday)
-15. Do NOT create a separate worktree unless requested to
-16. After listing files and confirming existence, then and only then generate the patch
+13. Always commit at a random time at night (if it is not reached yet today, use that of yesterday)
+14. Do NOT create a separate worktree unless requested to
+15. After listing files and confirming existence, then and only then generate the patch
