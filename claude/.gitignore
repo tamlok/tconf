@@ -1,0 +1,10 @@
+transcripts/
+projects/
+backups/
+cache/
+shell-snapshots/
+.credentials.json
+mcp-needs-auth-cache.json
+sync-config.json
+toolkit-manifest.json
+history.jsonl

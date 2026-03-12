@@ -1,0 +1,8 @@
+{
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "95"
+  },
+  "model": "opus[1m]",
+  "autoUpdatesChannel": "latest",
+  "fastMode": true
+}

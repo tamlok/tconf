@@ -62,6 +62,13 @@ function Main
     New-Item -Force -ItemType HardLink -Path "$HOME\AppData\Roaming\nushell\env.nu" -Target "nushell\env.nu"
     New-Item -Force -ItemType HardLink -Path "$HOME\AppData\Roaming\nushell\config.nu" -Target "nushell\config.nu"
 
+    $claudeFolder = $env:USERPROFILE + '\.claude'
+    if (Test-Path -Path $claudeFolder) {
+        Remove-Item -Path "$claudeFolder" -Recurse -Force
+    }
+    Write-Host "Creating symlink to $claudeFolder"
+    New-Item -ItemType Junction -Path $claudeFolder -Value $PSScriptRoot\claude
+
     $opencodeFolder = $env:USERPROFILE + '\.config\opencode'
     if (Test-Path -Path $opencodeFolder) {
         Remove-Item -Path "$opencodeFolder" -Recurse -Force
