@@ -4,5 +4,10 @@
   },
   "model": "opus[1m]",
   "autoUpdatesChannel": "latest",
-  "fastMode": true
+  "fastMode": true,
+  "permissions": {
+    "allow": [
+      "Bash"
+    ]
+  }
 }
