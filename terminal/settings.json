@@ -107,7 +107,7 @@
         }
     ],
     "showTabsInTitlebar": true,
-    "theme": "dark",
+    "theme": "light",
     "themes": [],
     "useAcrylicInTabRow": true
 }
