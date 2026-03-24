@@ -6,7 +6,7 @@
     "confirmCloseAllTabs": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{0da47a19-3b10-4d4d-a52f-7f1dd6ef4e44}",
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
     "experimental.detectURLs": false,
     "keybindings": [],
     "launchMode": "maximized",
@@ -31,21 +31,6 @@
         },
         "list":
         [
-            {
-                "altGrAliasing": true,
-                "antialiasingMode": "grayscale",
-                "commandline": "nu.exe",
-                "cursorShape": "filledBox",
-                "guid": "{0da47a19-3b10-4d4d-a52f-7f1dd6ef4e44}",
-                "hidden": false,
-                "historySize": 9001,
-                "icon": "ms-appx:///ProfileIcons/{61c54bbd-c2c6-5271-96e7-009a87ff44bf}.png",
-                "name": "Nushell",
-                "padding": "8, 8, 8, 8",
-                "snapOnInput": true,
-                "startingDirectory": "%USERPROFILE%",
-                "useAcrylic": false
-            },
             {
                 "cursorShape": "filledBox",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
