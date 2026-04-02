@@ -79,10 +79,10 @@
       "model": "github-copilot/claude-opus-4.6"
     },
     "unspecified-low": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/gpt-5.3-codex"
     },
     "unspecified-high": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/gpt-5.3-codex",
       "variant": "max"
     },
     "writing": {
