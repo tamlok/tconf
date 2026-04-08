@@ -31,21 +31,22 @@
   },
   "agents": {
     "explore": {
-      "model": "github-copilot/gpt-5.4"
+      "model": "github-copilot/gpt-5.4-mini"
     },
     "librarian": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/claude-haiku-4.5"
     },
     "oracle": {
       "model": "github-copilot/gpt-5.4",
       "variant": "high"
     },
     "prometheus": {
-      "model": "github-copilot/claude-opus-4.6",
-      "variant": "max"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "high"
     },
     "sisyphus": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/claude-opus-4.6",
+      "variant": "max"
     },
     "metis": {
       "model": "github-copilot/claude-opus-4.6",
@@ -53,40 +54,49 @@
     },
     "momus": {
       "model": "github-copilot/gpt-5.4",
-      "variant": "medium"
+      "variant": "xhigh"
     },
     "atlas": {
-      "model": "github-copilot/claude-opus-4.6",
-      "variant": "max"
+      "model": "github-copilot/claude-sonnet-4.6"
+    },
+    "hephaestus": {
+      "model": "github-copilot/gpt-5.4",
+      "variant": "medium"
     },
     "multimodal-looker": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "medium"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/gemini-3.1-pro",
+      "variant": "high"
     },
     "ultrabrain": {
-      "model": "github-copilot/gpt-5.3-codex",
+      "model": "github-copilot/gpt-5.4",
       "variant": "xhigh"
     },
     "artistry": {
+      "model": "github-copilot/gemini-3.1-pro",
+      "variant": "high"
+    },
+    "deep": {
+      "model": "github-copilot/gpt-5.4",
+      "variant": "medium"
+    },
+    "quick": {
+      "model": "github-copilot/gpt-5.4-mini"
+    },
+    "unspecified-low": {
+      "model": "github-copilot/claude-sonnet-4.6"
+    },
+    "unspecified-high": {
       "model": "github-copilot/claude-opus-4.6",
       "variant": "max"
     },
-    "quick": {
-      "model": "github-copilot/claude-opus-4.6"
-    },
-    "unspecified-low": {
-      "model": "github-copilot/gpt-5.3-codex"
-    },
-    "unspecified-high": {
-      "model": "github-copilot/gpt-5.3-codex",
-      "variant": "max"
-    },
     "writing": {
-      "model": "github-copilot/gpt-5.4"
+      "model": "github-copilot/claude-sonnet-4.6"
     }
   },
   "background_task": {
