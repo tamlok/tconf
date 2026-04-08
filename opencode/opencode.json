@@ -9,6 +9,6 @@
   "theme": "everforest",
   "snapshot": false,
   "plugin": [
-    "oh-my-opencode@latest"
+    "oh-my-openagent@latest"
   ]
 }

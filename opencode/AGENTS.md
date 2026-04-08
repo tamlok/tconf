@@ -15,3 +15,4 @@ You MUST follow this workflow strictly:
 13. Always commit at a random time at night (if it is not reached yet today, use that of yesterday)
 14. Do NOT create a separate worktree unless requested to
 15. After listing files and confirming existence, then and only then generate the patch
+16. Always submit to Momus for high accuracy review when building a plan
