@@ -12,7 +12,7 @@ You MUST follow this workflow strictly:
 10. Do not introduce unnecessary trailing spaces
 11. Prefer Powershell to Bash
 12. Use the same line endings as existing lines (if none, then prefer unix style)
-13. Always commit at a random time at night (if it is not reached yet today, use that of yesterday)
+13. Always commit at a random time at night (both authord and commit date, and if it is not reached yet today, use that of yesterday)
 14. Do NOT create a separate worktree unless requested to
 15. After listing files and confirming existence, then and only then generate the patch
 16. Always submit to Momus for high accuracy review when building a plan
