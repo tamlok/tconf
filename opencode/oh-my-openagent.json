@@ -90,9 +90,9 @@
     }
   },
   "background_task": {
-    "defaultConcurrency": 5,
+    "defaultConcurrency": 10,
     "providerConcurrency": {
-      "github-copilot": 5
+      "github-copilot": 10
     }
   },
   "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/master/assets/oh-my-openagent.schema.json"
