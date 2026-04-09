@@ -75,7 +75,7 @@ function Setup-Config
     New-Item -ItemType Directory -Force -Path $opencodeFolder | Out-Null
     Write-Host "Copying config to $opencodeFolder"
     Copy-Item -Force "$PSScriptRoot\opencode\AGENTS.md" $opencodeFolder
-    Copy-Item -Force "$PSScriptRoot\opencode\oh-my-opencode.json" $opencodeFolder
+    Copy-Item -Force "$PSScriptRoot\opencode\oh-my-openagent.json" $opencodeFolder
     Copy-Item -Force "$PSScriptRoot\opencode\opencode.json" $opencodeFolder
 }
 
