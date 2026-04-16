@@ -46,11 +46,11 @@
     },
     "sisyphus": {
       "model": "github-copilot/claude-opus-4.6",
-      "variant": "max"
+      "variant": "high"
     },
     "metis": {
       "model": "github-copilot/claude-opus-4.6",
-      "variant": "max"
+      "variant": "high"
     },
     "momus": {
       "model": "github-copilot/gpt-5.4",
@@ -93,7 +93,7 @@
     },
     "unspecified-high": {
       "model": "github-copilot/claude-opus-4.6",
-      "variant": "max"
+      "variant": "high"
     },
     "writing": {
       "model": "github-copilot/claude-sonnet-4.6"
