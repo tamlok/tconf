@@ -46,7 +46,11 @@
     },
     "sisyphus": {
       "model": "github-copilot/claude-opus-4.6",
-      "variant": "high"
+      "variant": "high",
+      "ultrawork": {
+        "model": "github-copilot/claude-opus-4.6",
+        "variant": "high"
+      }
     },
     "metis": {
       "model": "github-copilot/claude-opus-4.6",
