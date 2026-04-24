@@ -64,8 +64,8 @@
       "model": "github-copilot/claude-opus-4.6"
     },
     "hephaestus": {
-      "model": "github-copilot/claude-opus-4.6",
-      "variant": "medium"
+      "model": "github-copilot/gpt-5.4",
+      "variant": "high"
     },
     "multimodal-looker": {
       "model": "github-copilot/claude-opus-4.6",
