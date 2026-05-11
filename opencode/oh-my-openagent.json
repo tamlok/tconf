@@ -31,29 +31,29 @@
   },
   "agents": {
     "explore": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/claude-opus-4.7-1m-internal"
     },
     "librarian": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/claude-opus-4.7-1m-internal"
     },
     "oracle": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "high"
     },
     "prometheus": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "high"
     },
     "sisyphus": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "high",
       "ultrawork": {
-        "model": "github-copilot/claude-opus-4.6",
+        "model": "github-copilot/claude-opus-4.7-1m-internal",
         "variant": "high"
       }
     },
     "metis": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "high"
     },
     "momus": {
@@ -61,46 +61,46 @@
       "variant": "high"
     },
     "atlas": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/claude-opus-4.7-1m-internal"
     },
     "hephaestus": {
       "model": "github-copilot/gpt-5.4",
       "variant": "high"
     },
     "multimodal-looker": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "medium"
     }
   },
   "categories": {
     "visual-engineering": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "high"
     },
     "ultrabrain": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "xhigh"
     },
     "artistry": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "high"
     },
     "deep": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "medium"
     },
     "quick": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/claude-opus-4.7-1m-internal"
     },
     "unspecified-low": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/claude-opus-4.7-1m-internal"
     },
     "unspecified-high": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "high"
     },
     "writing": {
-      "model": "github-copilot/claude-opus-4.6"
+      "model": "github-copilot/claude-opus-4.7-1m-internal"
     }
   },
   "background_task": {
