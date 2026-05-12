@@ -53,23 +53,23 @@
       }
     },
     "metis": {
-      "model": "github-copilot/claude-opus-4.7-1m-internal",
+      "model": "github-copilot/gpt-5.5",
       "variant": "high"
     },
     "momus": {
-      "model": "github-copilot/gpt-5.4",
+      "model": "github-copilot/gpt-5.5",
       "variant": "high"
     },
     "atlas": {
       "model": "github-copilot/claude-opus-4.7-1m-internal"
     },
     "hephaestus": {
-      "model": "github-copilot/gpt-5.4",
+      "model": "github-copilot/gpt-5.5",
       "variant": "high"
     },
     "multimodal-looker": {
-      "model": "github-copilot/claude-opus-4.7-1m-internal",
-      "variant": "medium"
+      "model": "github-copilot/gemini-3-pro-preview",
+      "variant": "high"
     }
   },
   "categories": {
@@ -78,7 +78,7 @@
       "variant": "high"
     },
     "ultrabrain": {
-      "model": "github-copilot/claude-opus-4.7-1m-internal",
+      "model": "github-copilot/gpt-5.5",
       "variant": "xhigh"
     },
     "artistry": {
@@ -87,20 +87,21 @@
     },
     "deep": {
       "model": "github-copilot/claude-opus-4.7-1m-internal",
-      "variant": "medium"
+      "variant": "high"
     },
     "quick": {
-      "model": "github-copilot/claude-opus-4.7-1m-internal"
+      "model": "github-copilot/claude-haiku-4.5"
     },
     "unspecified-low": {
-      "model": "github-copilot/claude-opus-4.7-1m-internal"
+      "model": "github-copilot/claude-haiku-4.5"
     },
     "unspecified-high": {
       "model": "github-copilot/claude-opus-4.7-1m-internal",
       "variant": "high"
     },
     "writing": {
-      "model": "github-copilot/claude-opus-4.7-1m-internal"
+      "model": "github-copilot/claude-opus-4.7-1m-internal",
+      "variant": "high"
     }
   },
   "background_task": {
