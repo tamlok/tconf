@@ -139,7 +139,20 @@ function Main
 
     Scoop-Install -command "opencode" -package "opencode"
 
-    Scoop-Install -command "python3" -package "python"
+    # Don't use Check-Command-Exists for python: Windows ships a Microsoft Store
+    # stub `python.exe` that satisfies Get-Command but errors on execution.
+    # Actually invoke `python --version` and check the exit code instead.
+    $pythonInstalled = $false
+    try {
+        $null = & python --version 2>&1
+        if ($LASTEXITCODE -eq 0) { $pythonInstalled = $true }
+    } catch { }
+    if (-Not $pythonInstalled) {
+        Write-Host "Installing python"
+        scoop install python
+    } else {
+        Write-Host "python already exists"
+    }
 
     $newNvy = Scoop-Install -command "nvy" -package "nvy"
     if ($newNvy) {
