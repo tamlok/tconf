@@ -3,10 +3,11 @@
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": [],
     "alwaysShowNotificationIcon": false,
+    "alwaysShowTabs": false,
     "confirmCloseAllTabs": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "defaultProfile": "{7e9f8a2b-3c4d-4e5f-9a8b-1c2d3e4f5a6b}",
     "experimental.detectURLs": false,
     "keybindings": [],
     "launchMode": "maximized",
@@ -32,6 +33,13 @@
         "list":
         [
             {
+                "commandline": "zellij.exe",
+                "guid": "{7e9f8a2b-3c4d-4e5f-9a8b-1c2d3e4f5a6b}",
+                "hidden": false,
+                "name": "Zellij",
+                "startingDirectory": "%USERPROFILE%"
+            },
+            {
                 "cursorShape": "filledBox",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
@@ -43,38 +51,12 @@
                 "name": "Command Prompt"
             },
             {
-                "guid": "{6e25c286-4f83-5fbb-8ddf-24ba38b8db9b}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 2019",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{3f5a023b-2160-5fe8-8c87-16bf3fa453f6}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 2019",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{16208362-94fc-5b1f-a491-5b2624d5ab56}",
-                "hidden": true,
-                "name": "Visual Studio Debug Console",
-                "source": "VSDebugConsole"
-            },
-            {
                 "commandline": "pwsh.exe -NoExit -Command \"&{Import-Module \"\"\"C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\Tools\\Microsoft.VisualStudio.DevShell.dll\"\"\"; Enter-VsDevShell 22591db0 -SkipAutomaticLocation -DevCmdArguments \"\"\"-arch=x64 -host_arch=x64\"\"\"}\"",
                 "guid": "{9d77d843-5545-45d2-9419-ea341ad560fb}",
                 "hidden": false,
                 "icon": "ms-appx:///ProfileIcons/vs-powershell.png",
                 "name": "Developer PowerShell",
                 "startingDirectory": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise"
-            },
-            {
-                "commandline": "C:\\WINDOWS\\system32\\wsl.exe -d Ubuntu --cd ~",
-                "guid": "{aef18d69-530d-5840-9be9-a598cfe2148a}",
-                "hidden": false,
-                "icon": "C:\\Users\\tanle\\AppData\\Local\\wsl\\{72c4adaa-d8d5-4262-99d9-fcbea3040c00}\\shortcut.ico",
-                "name": "Ubuntu",
-                "source": "Microsoft.WSL"
             }
         ]
     },
