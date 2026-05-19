@@ -1,0 +1,12 @@
+layout {
+  cwd "~/study"
+  tab name="vnote" split_direction="vertical" hide_floating_panes=true cwd="vnote" {
+    pane name="editor"
+    pane name="chat" {
+      command "opencode"
+    }
+    floating_panes {
+      pane name="git"
+    }
+  }
+}

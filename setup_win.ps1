@@ -79,8 +79,12 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\opencode\opencode.json" $opencodeFolder
 
     $zellijFolder = "$env:APPDATA\Zellij\config"
+    $zellijLayoutFolder = "$zellijFolder\layouts"
+    Write-Host "Copying config to $zellijFolder and $zellijLayoutFolder"
     New-Item -ItemType Directory -Force -Path $zellijFolder | Out-Null
     Copy-Item -Force "$PSScriptRoot\zellij\config.kdl" $zellijFolder
+    New-Item -ItemType Directory -Force -Path $zellijLayoutFolder | Out-Null
+    Copy-Item -Force "$PSScriptRoot\zellij\l_*.kdl" $zellijLayoutFolder
 }
 
 function Setup-Env

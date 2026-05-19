@@ -1,0 +1,15 @@
+layout {
+  cwd "C:/src/Sydney"
+  tab name="main" split_direction="vertical" hide_floating_panes=true {
+    pane name="editor"
+    pane name="chat" {
+      command "mai-claude"
+    }
+    floating_panes {
+      pane name="git"
+    }
+  }
+  tab name="commands" split_direction="horizontal" {
+
+  }
+}
