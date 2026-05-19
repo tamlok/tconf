@@ -12,34 +12,37 @@ keybinds {
         bind "Ctrl [" { Write 27; }
     }
     normal {
-        bind "Ctrl g" { Write 7; }
+        bind "Ctrl g" { Write 7; SwitchToMode "Locked"; }
 
         // Tabs
-        bind "1" { GoToTab 1; }
-        bind "2" { GoToTab 2; }
-        bind "3" { GoToTab 3; }
-        bind "4" { GoToTab 4; }
-        bind "5" { GoToTab 5; }
-        bind "6" { GoToTab 6; }
-        bind "7" { GoToTab 7; }
-        bind "8" { GoToTab 8; }
-        bind "9" { GoToTab 9; }
-        bind "n" { GoToNextTab; }
-        bind "p" { GoToPreviousTab; }
-        bind "t" { NewTab; }
-        bind "0" { ToggleTab; }
+        bind "1" { GoToTab 1; SwitchToMode "locked"; }
+        bind "2" { GoToTab 2; SwitchToMode "locked"; }
+        bind "3" { GoToTab 3; SwitchToMode "locked"; }
+        bind "4" { GoToTab 4; SwitchToMode "locked"; }
+        bind "5" { GoToTab 5; SwitchToMode "locked"; }
+        bind "6" { GoToTab 6; SwitchToMode "locked"; }
+        bind "7" { GoToTab 7; SwitchToMode "locked"; }
+        bind "8" { GoToTab 8; SwitchToMode "locked"; }
+        bind "9" { GoToTab 9; SwitchToMode "locked"; }
+        bind "n" { GoToNextTab; SwitchToMode "locked"; }
+        bind "p" { GoToPreviousTab; SwitchToMode "locked";}
+        bind "t" { NewTab; SwitchToMode "locked"; }
+        bind "0" { ToggleTab; SwitchToMode "locked"; }
 
         // Panes
-        bind "h" { MoveFocus "left"; }
-        bind "j" { MoveFocus "down"; }
-        bind "k" { MoveFocus "up"; }
-        bind "l" { MoveFocus "right"; }
-        bind "x" { CloseFocus; }
-        bind "f" { ToggleFocusFullscreen; }
-        bind "v" { NewPane "right"; }
-        bind "s" { NewPane "down"; }
-        bind "w" { ToggleFloatingPanes; }
-        bind "tab" { SwitchFocus; }
+        bind "h" { MoveFocus "left"; SwitchToMode "locked";}
+        bind "j" { MoveFocus "down"; SwitchToMode "locked";}
+        bind "k" { MoveFocus "up"; SwitchToMode "locked";}
+        bind "l" { MoveFocus "right"; SwitchToMode "locked";}
+        bind "x" { CloseFocus; SwitchToMode "locked"; }
+        bind "f" { ToggleFocusFullscreen; SwitchToMode "locked"; }
+        bind "v" { NewPane "right"; SwitchToMode "locked"; }
+        bind "s" { NewPane "down"; SwitchToMode "locked"; }
+        bind "w" { ToggleFloatingPanes; SwitchToMode "locked"; }
+        bind "tab" { SwitchFocus; SwitchToMode "locked"; }
+    }
+    shared_except "locked" "entersearch" {
+        bind "enter" { SwitchToMode "locked"; }
     }
     shared_except "locked" {
         bind "esc" { SwitchToMode "locked"; }
