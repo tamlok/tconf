@@ -12,7 +12,38 @@ keybinds {
         bind "Ctrl [" { Write 27; }
     }
     normal {
-        bind "Ctrl g" { Write 7; SwitchToMode "Locked"; }
+        bind "Ctrl g" { Write 7; }
+
+        // Tabs
+        bind "1" { GoToTab 1; }
+        bind "2" { GoToTab 2; }
+        bind "3" { GoToTab 3; }
+        bind "4" { GoToTab 4; }
+        bind "5" { GoToTab 5; }
+        bind "6" { GoToTab 6; }
+        bind "7" { GoToTab 7; }
+        bind "8" { GoToTab 8; }
+        bind "9" { GoToTab 9; }
+        bind "n" { GoToNextTab; }
+        bind "p" { GoToPreviousTab; }
+        bind "t" { NewTab; }
+        bind "0" { ToggleTab; }
+
+        // Panes
+        bind "h" { MoveFocus "left"; }
+        bind "j" { MoveFocus "down"; }
+        bind "k" { MoveFocus "up"; }
+        bind "l" { MoveFocus "right"; }
+        bind "x" { CloseFocus; }
+        bind "f" { ToggleFocusFullscreen; }
+        bind "v" { NewPane "right"; }
+        bind "s" { NewPane "down"; }
+        bind "w" { ToggleFloatingPanes; }
+        bind "tab" { SwitchFocus; }
+    }
+    shared_except "locked" {
+        bind "esc" { SwitchToMode "locked"; }
+        bind "Ctrl [" { SwitchToMode "locked"; }
     }
 }
 
