@@ -36,6 +36,7 @@
                 "commandline": "zellij.exe",
                 "guid": "{7e9f8a2b-3c4d-4e5f-9a8b-1c2d3e4f5a6b}",
                 "hidden": false,
+                "icon": "🪼",
                 "name": "Zellij",
                 "startingDirectory": "%USERPROFILE%"
             },
