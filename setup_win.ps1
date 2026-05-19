@@ -77,6 +77,10 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\opencode\AGENTS.md" $opencodeFolder
     Copy-Item -Force "$PSScriptRoot\opencode\oh-my-openagent.json" $opencodeFolder
     Copy-Item -Force "$PSScriptRoot\opencode\opencode.json" $opencodeFolder
+
+    $zellijFolder = "$env:APPDATA\Zellij\config"
+    New-Item -ItemType Directory -Force -Path $zellijFolder | Out-Null
+    Copy-Item -Force "$PSScriptRoot\zellij\config.kdl" $zellijFolder
 }
 
 function Setup-Env
