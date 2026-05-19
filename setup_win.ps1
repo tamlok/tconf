@@ -167,6 +167,8 @@ function Main
 
     python3 -m pip install --user --upgrade pynvim
 
+    Scoop-Install -command "zellij" -package "zellij"
+
     Setup-Config
     Setup-Env
 }
