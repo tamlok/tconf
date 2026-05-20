@@ -1,6 +1,9 @@
 layout {
   cwd "C:/src/Sydney"
   tab name="main" split_direction="vertical" hide_floating_panes=true {
+    pane size=1 borderless=true {
+        plugin location="tab-bar"
+    }
     pane name="editor"
     pane name="chat" {
       command "mai-claude"
@@ -8,8 +11,17 @@ layout {
     floating_panes {
       pane name="git"
     }
+    pane size=1 borderless=true {
+      plugin location="status-bar"
+    }
   }
   tab name="commands" split_direction="horizontal" {
-
+    pane size=1 borderless=true {
+        plugin location="tab-bar"
+    }
+    pane
+    pane size=1 borderless=true {
+      plugin location="status-bar"
+    }
   }
 }

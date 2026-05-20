@@ -6,49 +6,59 @@ web-server false
 default_shell "pwsh"
 
 keybinds {
-    locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
+    normal clear-defaults=true {
+        bind "Ctrl g" { SwitchToMode "tmux"; }
         bind "Ctrl [" { Write 27; }
         bind "Ctrl 6" { Write 30; }
     }
-    normal {
-        bind "Ctrl g" { Write 7; SwitchToMode "Locked"; }
+
+    tmux clear-defaults=true {
+        bind "Ctrl g" { Write 7; SwitchToMode "normal"; }
 
         // Tabs
-        bind "1" { GoToTab 1; SwitchToMode "locked"; }
-        bind "2" { GoToTab 2; SwitchToMode "locked"; }
-        bind "3" { GoToTab 3; SwitchToMode "locked"; }
-        bind "4" { GoToTab 4; SwitchToMode "locked"; }
-        bind "5" { GoToTab 5; SwitchToMode "locked"; }
-        bind "6" { GoToTab 6; SwitchToMode "locked"; }
-        bind "7" { GoToTab 7; SwitchToMode "locked"; }
-        bind "8" { GoToTab 8; SwitchToMode "locked"; }
-        bind "9" { GoToTab 9; SwitchToMode "locked"; }
-        bind "n" { GoToNextTab; SwitchToMode "locked"; }
-        bind "p" { GoToPreviousTab; SwitchToMode "locked";}
-        bind "t" { NewTab; SwitchToMode "locked"; }
-        bind "0" { ToggleTab; SwitchToMode "locked"; }
+        bind "1" { GoToTab 1; SwitchToMode "normal"; }
+        bind "2" { GoToTab 2; SwitchToMode "normal"; }
+        bind "3" { GoToTab 3; SwitchToMode "normal"; }
+        bind "4" { GoToTab 4; SwitchToMode "normal"; }
+        bind "5" { GoToTab 5; SwitchToMode "normal"; }
+        bind "6" { GoToTab 6; SwitchToMode "normal"; }
+        bind "7" { GoToTab 7; SwitchToMode "normal"; }
+        bind "8" { GoToTab 8; SwitchToMode "normal"; }
+        bind "9" { GoToTab 9; SwitchToMode "normal"; }
+        bind "]" { GoToNextTab; SwitchToMode "normal"; }
+        bind "[" { GoToPreviousTab; SwitchToMode "normal";}
+        bind "a" { NewTab; SwitchToMode "normal"; }
+        bind "0" { ToggleTab; SwitchToMode "normal"; }
 
         // Panes
-        bind "h" { MoveFocus "left"; SwitchToMode "locked";}
-        bind "j" { MoveFocus "down"; SwitchToMode "locked";}
-        bind "k" { MoveFocus "up"; SwitchToMode "locked";}
-        bind "l" { MoveFocus "right"; SwitchToMode "locked";}
-        bind "x" { CloseFocus; SwitchToMode "locked"; }
-        bind "f" { ToggleFocusFullscreen; SwitchToMode "locked"; }
-        bind "v" { NewPane "right"; SwitchToMode "locked"; }
-        bind "s" { NewPane "down"; SwitchToMode "locked"; }
-        bind "w" { ToggleFloatingPanes; SwitchToMode "locked"; }
-        bind "tab" { SwitchFocus; SwitchToMode "locked"; }
+        bind "h" { MoveFocus "left"; SwitchToMode "normal";}
+        bind "j" { MoveFocus "down"; SwitchToMode "normal";}
+        bind "k" { MoveFocus "up"; SwitchToMode "normal";}
+        bind "l" { MoveFocus "right"; SwitchToMode "normal";}
+        bind "x" { CloseFocus; SwitchToMode "normal"; }
+        bind "f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
+        bind "v" { NewPane "right"; SwitchToMode "normal"; }
+        bind "s" { NewPane "down"; SwitchToMode "normal"; }
+        bind "w" { ToggleFloatingPanes; SwitchToMode "normal"; }
+        bind "tab" { SwitchFocus; SwitchToMode "normal"; }
+
+        // Modes
+        bind "p" { SwitchToMode "pane"; }
+        bind "t" { SwitchToMode "tab"; }
+        bind "r" { SwitchToMode "resize"; }
+        bind "m" { SwitchToMode "move"; }
+        bind "s" { SwitchToMode "search"; }
+        bind "o" { SwitchToMode "session"; }
+        bind "q" { Quit; }
+
+        bind "esc" { SwitchToMode "normal"; }
+        bind "Ctrl [" { SwitchToMode "normal"; }
     }
-    shared_except "locked" "entersearch" {
-        bind "enter" { SwitchToMode "locked"; }
-    }
-    shared_except "locked" {
-        bind "esc" { SwitchToMode "locked"; }
-        bind "Ctrl [" { SwitchToMode "locked"; }
+    shared_except "normal" {
+        bind "esc" { SwitchToMode "normal"; }
+        bind "Ctrl [" { SwitchToMode "normal"; }
     }
 }
 
-default_mode "locked"
+default_mode "normal"
 show_startup_tips false
