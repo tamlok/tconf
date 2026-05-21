@@ -1,6 +1,18 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "github-copilot/claude-opus-4.7-1m-internal",
+  "provider": {
+    "github-copilot": {
+      "models": {
+        "claude-opus-4.7-1m-internal": {
+          "limit": {
+            "context": 1000000,
+            "output": 128000
+          }
+        }
+      }
+    }
+  },
   "permission": {
     "bash": {
       "rg *": "allow"
