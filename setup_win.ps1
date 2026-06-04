@@ -173,6 +173,9 @@ function Main
 
     Scoop-Install -command "zellij" -package "zellij"
 
+    # Install code graph
+    irm https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.ps1 | iex
+
     Setup-Config
     Setup-Env
 }
