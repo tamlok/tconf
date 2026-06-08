@@ -77,14 +77,6 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\opencode\AGENTS.md" $opencodeFolder
     Copy-Item -Force "$PSScriptRoot\opencode\oh-my-openagent.json" $opencodeFolder
     Copy-Item -Force "$PSScriptRoot\opencode\opencode.json" $opencodeFolder
-
-    $zellijFolder = "$env:APPDATA\Zellij\config"
-    $zellijLayoutFolder = "$zellijFolder\layouts"
-    Write-Host "Copying config to $zellijFolder and $zellijLayoutFolder"
-    New-Item -ItemType Directory -Force -Path $zellijFolder | Out-Null
-    Copy-Item -Force "$PSScriptRoot\zellij\config.kdl" $zellijFolder
-    New-Item -ItemType Directory -Force -Path $zellijLayoutFolder | Out-Null
-    Copy-Item -Force "$PSScriptRoot\zellij\l_*.kdl" $zellijLayoutFolder
 }
 
 function Setup-Env
@@ -171,7 +163,7 @@ function Main
 
     python3 -m pip install --user --upgrade pynvim
 
-    Scoop-Install -command "zellij" -package "zellij"
+    winget install Microsoft.Coreutils
 
     # Install code graph
     irm https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.ps1 | iex
