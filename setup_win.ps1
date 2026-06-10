@@ -78,10 +78,13 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\opencode\oh-my-openagent.json" $opencodeFolder
     Copy-Item -Force "$PSScriptRoot\opencode\opencode.json" $opencodeFolder
 
-    $herdrFolder = "$env:APPDATA\herdr"
-    New-Item -ItemType Directory -Force -Path $herdrFolder | Out-Null
-    Remove-If-Link "$herdrFolder\config.toml"
-    Copy-Item -Force "$PSScriptRoot\herdr\config.toml" "$herdrFolder\config.toml"
+    $zellijFolder = "$env:APPDATA\Zellij\config"
+    $zellijLayoutFolder = "$zellijFolder\layouts"
+    Write-Host "Copying config to $zellijFolder and $zellijLayoutFolder"
+    New-Item -ItemType Directory -Force -Path $zellijFolder | Out-Null
+    Copy-Item -Force "$PSScriptRoot\zellij\config.kdl" $zellijFolder
+    New-Item -ItemType Directory -Force -Path $zellijLayoutFolder | Out-Null
+    Copy-Item -Force "$PSScriptRoot\zellij\l_*.kdl" $zellijLayoutFolder
 }
 
 function Setup-Env
@@ -95,88 +98,6 @@ function Setup-Env
     if ($currentPath -notlike "*$masonBin*") {
         [Environment]::SetEnvironmentVariable("Path", "$masonBin;$currentPath", "User")
     }
-}
-
-function Install-Herdr
-{
-    # Stable herdr releases (e.g. v0.6.8) ship no Windows binary. Resolve the most
-    # recent release that does ship `herdr-windows-x86_64.exe` (currently beta preview-* builds).
-    if (Check-Command-Exists "herdr") {
-        Write-Host "herdr already exists"
-        return
-    }
-
-    Write-Host "Installing herdr"
-
-    $previousProgressPreference = $ProgressPreference
-    $ProgressPreference = 'SilentlyContinue'
-    [Net.ServicePointManager]::SecurityProtocol = `
-        [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-
-    $headers = @{ 'User-Agent' = 'tconf-setup-win' }
-    $apiUrl = 'https://api.github.com/repos/ogulcancelik/herdr/releases'
-    $assetName = 'herdr-windows-x86_64.exe'
-
-    try {
-        $releases = Invoke-RestMethod -Uri $apiUrl -Headers $headers -TimeoutSec 30 -ErrorAction Stop
-    } catch {
-        Write-Error "Failed to query GitHub API for herdr releases: $_"
-        $ProgressPreference = $previousProgressPreference
-        return
-    }
-
-    $targetRelease = $null
-    $targetAsset = $null
-    foreach ($release in $releases) {
-        foreach ($asset in $release.assets) {
-            if ($asset.name -eq $assetName) {
-                $targetRelease = $release
-                $targetAsset = $asset
-                break
-            }
-        }
-        if ($targetAsset) { break }
-    }
-
-    if (-Not $targetAsset) {
-        Write-Error "No herdr release containing $assetName found in the 30 most recent releases. See https://github.com/ogulcancelik/herdr/releases"
-        $ProgressPreference = $previousProgressPreference
-        return
-    }
-
-    Write-Host "Installing herdr release: $($targetRelease.tag_name) ($assetName)"
-
-    $installDir = "$env:LOCALAPPDATA\Programs\herdr"
-    New-Item -ItemType Directory -Force -Path $installDir | Out-Null
-    $destination = "$installDir\herdr.exe"
-    $tempDestination = "$destination.download"
-
-    try {
-        Invoke-WebRequest -Uri $targetAsset.browser_download_url -OutFile $tempDestination -Headers $headers -UseBasicParsing -ErrorAction Stop
-        Move-Item -Force -Path $tempDestination -Destination $destination
-    } catch {
-        Write-Error "Failed to download $($targetAsset.browser_download_url): $_"
-        if (Test-Path $tempDestination) { Remove-Item -Force $tempDestination }
-        $ProgressPreference = $previousProgressPreference
-        return
-    }
-
-    # Clear Mark-of-the-Web so Windows doesn't block first launch
-    try { Unblock-File -Path $destination -ErrorAction SilentlyContinue } catch { }
-
-    # Persist install dir to user PATH if not already present
-    $userPath = [Environment]::GetEnvironmentVariable("Path", "User")
-    if ($userPath -notlike "*$installDir*") {
-        [Environment]::SetEnvironmentVariable("Path", "$installDir;$userPath", "User")
-    }
-
-    # Update current process PATH so subsequent commands in this script run find herdr
-    if ($env:Path -notlike "*$installDir*") {
-        $env:Path = "$installDir;$env:Path"
-    }
-
-    $ProgressPreference = $previousProgressPreference
-    Write-Host "herdr installed: $destination"
 }
 
 function Main
@@ -226,8 +147,6 @@ function Main
 
     Scoop-Install -command "opencode" -package "opencode"
 
-    Install-Herdr
-
     # Don't use Check-Command-Exists for python: Windows ships a Microsoft Store
     # stub `python.exe` that satisfies Get-Command but errors on execution.
     # Actually invoke `python --version` and check the exit code instead.
@@ -252,10 +171,14 @@ function Main
 
     python3 -m pip install --user --upgrade pynvim
 
+    Scoop-Install -command "zellij" -package "zellij"
+
     winget install Microsoft.Coreutils
 
     # Install code graph
-    irm https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.ps1 | iex
+    if (-Not (Check-Command-Exists("codegraph"))) {
+        irm https://raw.githubusercontent.com/colbymchenry/codegraph/main/install.ps1 | iex
+    }
 
     Setup-Config
     Setup-Env
