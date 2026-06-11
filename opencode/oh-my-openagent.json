@@ -1,34 +1,4 @@
 {
-  "lsp": {
-    "clangd": {
-      "command": [
-        "clangd",
-        "--background-index"
-      ],
-      "extensions": [
-        ".c",
-        ".cpp",
-        ".h",
-        ".hpp",
-        ".cc",
-        ".cxx"
-      ]
-    },
-    "typescript": {
-      "command": [
-        "typescript-language-server",
-        "--stdio"
-      ],
-      "extensions": [
-        ".js",
-        ".jsx",
-        ".ts",
-        ".tsx",
-        ".mjs",
-        ".cjs"
-      ]
-    }
-  },
   "agents": {
     "explore": {
       "model": "github-copilot/claude-opus-4.8"
