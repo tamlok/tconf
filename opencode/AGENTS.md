@@ -16,3 +16,48 @@ You MUST follow this workflow strictly:
 14. Do NOT create a separate worktree unless requested to
 15. After listing files and confirming existence, then and only then generate the patch
 16. Always submit to Momus for high accuracy review when building a plan
+
+## Updating GitHub Copilot Models
+
+When adding or updating models for the GitHub Copilot provider:
+
+### 1. Headers (in `opencode.json`)
+The `copilot-developer-cli` integration ID unlocks extended models. Required headers:
+```json
+"headers": {
+  "Copilot-Integration-Id": "copilot-developer-cli",
+  "X-GitHub-Api-Version": "2026-06-01",
+  "User-Agent": "GitHubCopilotCLI/1.0.0"
+}
+```
+
+### 2. Custom Model Registration
+opencode's model discovery doesn't send user headers, so extended models must be registered manually in `provider.github-copilot.models`:
+```json
+"models": {
+  "model-id": {
+    "id": "model-id",
+    "name": "Display Name",
+    "reasoning": true,
+    "attachment": true,
+    "tool_call": true,
+    "limit": {
+      "context": <context_window_tokens>,
+      "output": <max_output_tokens>
+    }
+  }
+}
+```
+
+### 3. Current Model Specs (as of June 2026)
+| Model | Context | Output |
+|-------|---------|--------|
+| claude-opus-4.8 | 1,000,000 | 128,000 |
+| gpt-5.5 | 1,050,000 | 128,000 |
+| gemini-3-pro-preview | 1,000,000 | 65,536 |
+
+### 4. Verification
+After updating, verify specs at:
+- Anthropic: https://platform.claude.com/docs/en/about-claude/models
+- OpenAI: https://developers.openai.com/api/docs/models
+- Google: https://ai.google.dev/gemini-api/docs
