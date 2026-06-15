@@ -10,5 +10,14 @@
   "snapshot": false,
   "plugin": [
     "oh-my-openagent@latest"
-  ]
+  ],
+  "provider": {
+    "github-copilot": {
+      "options": {
+        "headers": {
+          "Copilot-Integration-Id": "copilot-4-cli"
+        }
+      }
+    }
+  }
 }
