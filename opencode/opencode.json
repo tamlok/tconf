@@ -9,7 +9,6 @@
   "theme": "everforest",
   "snapshot": false,
   "plugin": [
-    "oh-my-openagent@latest",
-    "opencode-copilot-enhanced@latest"
+    "oh-my-openagent@latest"
   ]
 }
