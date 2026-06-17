@@ -27,9 +27,17 @@ The `copilot-developer-cli` integration ID unlocks extended models. Required hea
 "headers": {
   "Copilot-Integration-Id": "copilot-developer-cli",
   "X-GitHub-Api-Version": "2026-06-01",
-  "User-Agent": "GitHubCopilotCLI/1.0.0"
+  "User-Agent": "copilot/1.0.64"
 }
 ```
+These values are verified against the official Copilot CLI bundle (`@github/copilot`
+`package/app.js`): `Copilot-Integration-Id` defaults to `copilot-developer-cli`,
+`X-GitHub-Api-Version` is the constant `2026-06-01`, and `User-Agent` is
+`copilot/<cli-version>` (the bundle's `aS()` builds `${name-without-scope}/${version}`).
+Do NOT statically set `X-Initiator` or `Openai-Intent` here — opencode sets those
+per-request, and a static `X-Initiator` is rejected as "invalid initiator". The CLI does
+NOT send `Editor-Version`/`Editor-Plugin-Version`. Run `update_copilot_headers.ps1` to
+refresh these from the installed CLI and deploy to `%USERPROFILE%\.config\opencode`.
 
 ### 2. Custom Model Registration
 opencode's model discovery doesn't send user headers, so extended models must be registered manually in `provider.github-copilot.models`:
