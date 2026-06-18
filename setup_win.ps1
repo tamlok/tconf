@@ -78,6 +78,12 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\opencode\oh-my-openagent.json" $opencodeFolder
     Copy-Item -Force "$PSScriptRoot\opencode\opencode.json" $opencodeFolder
 
+    $kiloFolder = "$configFolder\kilo"
+    Remove-If-Junction $kiloFolder
+    New-Item -ItemType Directory -Force -Path $kiloFolder | Out-Null
+    Write-Host "Copying config to $kiloFolder"
+    Copy-Item -Force "$PSScriptRoot\kilo\kilo.jsonc" $kiloFolder
+
     $zellijFolder = "$env:APPDATA\Zellij\config"
     $zellijLayoutFolder = "$zellijFolder\layouts"
     Write-Host "Copying config to $zellijFolder and $zellijLayoutFolder"
