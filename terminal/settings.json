@@ -7,7 +7,7 @@
     "confirmCloseAllTabs": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
-    "defaultProfile": "{7e9f8a2b-3c4d-4e5f-9a8b-1c2d3e4f5a6b}",
+    "defaultProfile": "{3bfd309b-cdb4-43d6-b236-abc3417a0678}",
     "experimental.detectURLs": false,
     "keybindings": [],
     "launchMode": "maximized",
@@ -32,6 +32,14 @@
         },
         "list":
         [
+            {
+                "commandline": "nu.exe",
+                "guid": "{3bfd309b-cdb4-43d6-b236-abc3417a0678}",
+                "hidden": false,
+                "icon": "🐚",
+                "name": "Nushell",
+                "startingDirectory": "%USERPROFILE%"
+            },
             {
                 "commandline": "pwsh.exe",
                 "guid": "{7e9f8a2b-3c4d-4e5f-9a8b-1c2d3e4f5a6b}",

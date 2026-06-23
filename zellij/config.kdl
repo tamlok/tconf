@@ -3,7 +3,7 @@ theme "nord"
 scroll_buffer_size 100000
 scrollback_editor "nvim"
 web-server false
-default_shell "pwsh"
+default_shell "nu"
 
 keybinds {
     normal clear-defaults=true {
