@@ -96,16 +96,15 @@ ubuntu_bootstrap() {
 # Map a generic package name to native package(s). Empty output = skip.
 ubuntu_pkg_name() {
     case "$1" in
-        neovim)     echo "neovim" ;;
+        # neovim from apt is too old; installed from the official release instead.
+        neovim)     echo "" ;;
         ripgrep)    echo "ripgrep" ;;
         ctags)      echo "universal-ctags" ;;
         gtags)      echo "global" ;;
         python)     echo "python3 python3-pip python3-venv" ;;
-        tmux)       echo "tmux" ;;
         git)        echo "git" ;;
         curl)       echo "curl" ;;
         fontconfig) echo "fontconfig" ;;
-        terminator) echo "terminator" ;;
         *)          echo "$1" ;;
     esac
 }
@@ -124,6 +123,7 @@ ubuntu_pkg_install() {
 
 # Tools not in Ubuntu's default repos, installed via their documented methods.
 ubuntu_install_tools() {
+    install_neovim            # official prebuilt release (apt's is too old)
     install_opencode          # official install script
     ubuntu_install_nushell    # official apt.fury.io repository
     install_zellij            # cargo (recommended) or prebuilt binary
@@ -162,10 +162,9 @@ macos_pkg_name() {
         ctags)      echo "universal-ctags" ;;
         gtags)      echo "global" ;;
         python)     echo "python" ;;
-        tmux)       echo "tmux" ;;
         git)        echo "git" ;;
-        # curl/fontconfig ship with macOS; terminator is Linux-only.
-        curl|fontconfig|terminator) echo "" ;;
+        # curl/fontconfig ship with macOS.
+        curl|fontconfig) echo "" ;;
         *)          echo "$1" ;;
     esac
 }
@@ -254,6 +253,34 @@ install_zellij() {
     fi
 }
 
+# https://github.com/neovim/neovim/blob/master/INSTALL.md (prebuilt release)
+# Distro packages lag badly, so Linux pulls the official tarball into
+# ~/.local/opt and symlinks the binary onto PATH (~/.local/bin wins over /usr/bin).
+NVIM_OPT="$HOME/.local/opt"
+install_neovim() {
+    local cpu arch dir
+    arch="$(uname -m)"
+    case "$arch" in
+        x86_64|amd64)  cpu="x86_64" ;;
+        aarch64|arm64) cpu="arm64" ;;
+        *) warn "neovim: unsupported arch '$arch', skipping"; return 0 ;;
+    esac
+    dir="nvim-linux-${cpu}"
+    if [ -x "$NVIM_OPT/$dir/bin/nvim" ]; then
+        log "neovim (official) already installed"
+        return 0
+    fi
+    local url="https://github.com/neovim/neovim/releases/latest/download/${dir}.tar.gz"
+    log "Installing neovim prebuilt binary from $url"
+    mkdir -p "$NVIM_OPT" "$LOCAL_BIN"
+    rm -rf "$NVIM_OPT/$dir"
+    if curl -fsSL "$url" | tar -xz -C "$NVIM_OPT"; then
+        ln -sf "$NVIM_OPT/$dir/bin/nvim" "$LOCAL_BIN/nvim"
+    else
+        warn "neovim install failed"
+    fi
+}
+
 # --------------------------------------------------------------------------
 # Config deployment
 # --------------------------------------------------------------------------
@@ -308,14 +335,6 @@ setup_config() {
         [ -e "$layout" ] || continue
         install_config "zellij/$(basename "$layout")" "$CONFIG_HOME/zellij/layouts/$(basename "$layout")"
     done
-
-    # tmux
-    install_config "tmux/tmux.conf" "$HOME/.tmux.conf"
-
-    # terminator (Linux only)
-    if [ "$OS" = "linux" ]; then
-        install_config "terminator/config" "$CONFIG_HOME/terminator/config"
-    fi
 }
 
 # --------------------------------------------------------------------------
@@ -370,10 +389,7 @@ main() {
     fi
 
     pkg_bootstrap
-    pkg_install neovim ripgrep ctags gtags python tmux git curl fontconfig
-    if [ "$OS" = "linux" ]; then
-        pkg_install terminator
-    fi
+    pkg_install neovim ripgrep ctags gtags python git fontconfig
 
     # Tools not in the default repos (opencode, nushell, zellij),
     # installed via each platform's recommended method.

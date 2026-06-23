@@ -88,7 +88,7 @@ unsupported `PLATFORM` fails fast with a message naming the functions to add.
    needed to add 3rd-party repos (e.g. `ca-certificates curl gnupg`).
 2. `<id>_pkg_name <generic>` — map a generic name to native package(s); echo an
    empty string to skip. Generic names currently used by `main`:
-   `neovim ripgrep ctags gtags python tmux git curl fontconfig terminator`.
+   `neovim ripgrep ctags gtags python git fontconfig`.
 3. `<id>_pkg_install <generic>...` — translate generics via `<id>_pkg_name` and
    install them with the distro's package manager.
 4. `<id>_install_tools` — install tools not in the default repos
