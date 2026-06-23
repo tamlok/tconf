@@ -210,12 +210,15 @@ macos_install_tools() {
 LOCAL_BIN="$HOME/.local/bin"
 
 # https://opencode.ai/docs  (official install script, cross-platform)
+# Always lands on the latest release: upgrades in place if already present,
+# otherwise installs fresh via the official website script.
 install_opencode() {
     if command -v opencode >/dev/null 2>&1; then
-        log "opencode already installed"
+        log "Upgrading opencode to the latest version"
+        opencode upgrade || warn "opencode upgrade failed"
         return 0
     fi
-    log "Installing opencode"
+    log "Installing latest opencode"
     curl -fsSL https://opencode.ai/install | bash || warn "opencode install failed"
 }
 
