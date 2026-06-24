@@ -69,3 +69,38 @@ After updating, verify specs at:
 - Anthropic: https://platform.claude.com/docs/en/about-claude/models
 - OpenAI: https://developers.openai.com/api/docs/models
 - Google: https://ai.google.dev/gemini-api/docs
+
+## Adding a New Linux Distro to `setup.sh`
+
+`setup.sh` (Linux/macOS) uses a pluggable package-manager abstraction. Platform
+selection happens in `detect_platform`, which sets:
+- `OS` -> `linux` or `macos`
+- `PLATFORM` -> the dispatch key: the distro `ID` from `/etc/os-release` on Linux
+  (e.g. `ubuntu`, `fedora`, `arch`), or `macos` on macOS.
+
+Driver functions are dispatched by name via `pkg_dispatch`, which calls
+`<PLATFORM>_<action>`. So to support a new distro, add functions prefixed with
+that distro's `/etc/os-release` `ID`. No other code changes are required; an
+unsupported `PLATFORM` fails fast with a message naming the functions to add.
+
+### Required functions for a new distro `<id>`
+1. `<id>_bootstrap` — refresh the package index and install any prerequisites
+   needed to add 3rd-party repos (e.g. `ca-certificates curl gnupg`).
+2. `<id>_pkg_name <generic>` — map a generic name to native package(s); echo an
+   empty string to skip. Generic names currently used by `main`:
+   `neovim ripgrep ctags gtags python tmux git curl fontconfig terminator`.
+3. `<id>_pkg_install <generic>...` — translate generics via `<id>_pkg_name` and
+   install them with the distro's package manager.
+4. `<id>_install_tools` — install tools not in the default repos
+   (`opencode`, `nushell`, `zellij`) using each project's documented method.
+
+### Guidelines
+- Reuse the shared helpers `install_opencode` (official install script) and
+  `install_zellij` (cargo `--locked`, then prebuilt-binary fallback) where the
+  distro has no native package.
+- Prefer the upstream project's officially documented install command; verify it
+  against the project docs before committing.
+- Keep every installer idempotent: check `command -v <bin>` and skip if present.
+- Use `sudo` only for the privileged package-manager steps.
+- Model the new driver on the existing `ubuntu_*` functions, and test with
+  `./setup.sh` (full) and `./setup.sh config` (config-only).
