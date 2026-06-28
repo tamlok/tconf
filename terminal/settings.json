@@ -66,6 +66,14 @@
                 "icon": "ms-appx:///ProfileIcons/vs-powershell.png",
                 "name": "Developer PowerShell",
                 "startingDirectory": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise"
+            },
+            {
+                "commandline": "wsl.exe -d Ubuntu",
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "icon": "🐧",
+                "name": "Ubuntu",
+                "startingDirectory": "~"
             }
         ]
     },
