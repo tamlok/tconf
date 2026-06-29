@@ -338,6 +338,9 @@ setup_config() {
         [ -e "$layout" ] || continue
         install_config "zellij/$(basename "$layout")" "$CONFIG_HOME/zellij/layouts/$(basename "$layout")"
     done
+
+    git config --global user.name "Le Tan"
+    git config --global user.email "tamlokveer@gmail.com"
 }
 
 # --------------------------------------------------------------------------
