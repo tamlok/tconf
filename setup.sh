@@ -102,6 +102,7 @@ ubuntu_pkg_name() {
         ctags)      echo "universal-ctags" ;;
         gtags)      echo "global" ;;
         python)     echo "python3 python3-pip python3-venv" ;;
+        node)       echo "nodejs npm" ;;
         git)        echo "git" ;;
         curl)       echo "curl" ;;
         fontconfig) echo "fontconfig" ;;
@@ -125,6 +126,7 @@ ubuntu_pkg_install() {
 ubuntu_install_tools() {
     install_neovim            # official prebuilt release (apt's is too old)
     install_opencode          # official install script
+    install_kilo              # kilo CLI via npm (@kilocode/cli)
     ubuntu_install_nushell    # official apt.fury.io repository
     install_zellij            # cargo (recommended) or prebuilt binary
 }
@@ -162,6 +164,7 @@ macos_pkg_name() {
         ctags)      echo "universal-ctags" ;;
         gtags)      echo "global" ;;
         python)     echo "python" ;;
+        node)       echo "node" ;;
         git)        echo "git" ;;
         # curl/fontconfig ship with macOS.
         curl|fontconfig) echo "" ;;
@@ -201,6 +204,7 @@ macos_install_tools() {
     else
         log "zellij already installed"
     fi
+    install_kilo    # kilo CLI via npm (@kilocode/cli)
 }
 
 # --------------------------------------------------------------------------
@@ -220,6 +224,19 @@ install_opencode() {
     fi
     log "Installing latest opencode"
     curl -fsSL https://opencode.ai/install | bash || warn "opencode install failed"
+}
+
+# https://kilo.ai/docs/getting-started/installing (CLI)
+# Installs/updates the Kilo CLI globally via npm. Requires node/npm, which is
+# installed by pkg_install (generic name "node"). Idempotent: npm -g reinstall
+# lands on the latest published version.
+install_kilo() {
+    if ! command -v npm >/dev/null 2>&1; then
+        warn "npm not found; skipping kilo CLI install"
+        return 0
+    fi
+    log "Installing/upgrading kilo CLI (@kilocode/cli)"
+    npm install -g @kilocode/cli || warn "kilo CLI install failed"
 }
 
 # https://zellij.dev/documentation/installation
@@ -314,7 +331,7 @@ setup_config() {
     install_config "wezterm.lua" "$CONFIG_HOME/wezterm/wezterm.lua"
 
     # kilo
-    install_config "kilo/kilo.jsonc" "$CONFIG_HOME/kilo/kilo.jsonc"
+    install_config "kilo/kilo.json" "$CONFIG_HOME/kilo/kilo.json"
 
     # nushell
     local nu_dir
@@ -395,7 +412,7 @@ main() {
     fi
 
     pkg_bootstrap
-    pkg_install neovim ripgrep ctags gtags python git fontconfig
+    pkg_install neovim ripgrep ctags gtags python node git fontconfig
 
     # Tools not in the default repos (opencode, nushell, zellij),
     # installed via each platform's recommended method.

@@ -82,7 +82,7 @@ function Setup-Config
     Remove-If-Junction $kiloFolder
     New-Item -ItemType Directory -Force -Path $kiloFolder | Out-Null
     Write-Host "Copying config to $kiloFolder"
-    Copy-Item -Force "$PSScriptRoot\kilo\kilo.jsonc" $kiloFolder
+    Copy-Item -Force "$PSScriptRoot\kilo\kilo.json" $kiloFolder
 
     $zellijFolder = "$env:APPDATA\Zellij\config"
     $zellijLayoutFolder = "$zellijFolder\layouts"
@@ -180,6 +180,18 @@ function Main
     Scoop-Install -command "zellij" -package "zellij"
 
     winget install Microsoft.Coreutils
+
+    # Kilo CLI requires node/npm. Install node first, then the CLI via npm.
+    $newNode = Scoop-Install -command "node" -package "nodejs"
+    if ($newNode) {
+        Refresh-Env
+    }
+    if (Check-Command-Exists "npm") {
+        Write-Host "Installing/upgrading kilo CLI (@kilocode/cli)"
+        npm install -g @kilocode/cli
+    } else {
+        Write-Host "npm not found; skipping kilo CLI install"
+    }
 
     # Install code graph
     if (-Not (Check-Command-Exists("codegraph"))) {

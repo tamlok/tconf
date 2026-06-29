@@ -1,5 +1,6 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
+  "theme": "everforest",
   "permission": {
     "*": "allow",
     "bash": "allow"
