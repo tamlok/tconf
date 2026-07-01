@@ -84,6 +84,9 @@ function Setup-Config
     Write-Host "Copying config to $kiloFolder"
     Copy-Item -Force "$PSScriptRoot\kilo\kilo.json" $kiloFolder
     Copy-Item -Force "$PSScriptRoot\kilo\AGENTS.md" $kiloFolder
+    $kiloAgentFolder = "$kiloFolder\agent"
+    New-Item -ItemType Directory -Force -Path $kiloAgentFolder | Out-Null
+    Copy-Item -Force "$PSScriptRoot\kilo\agent\*.md" $kiloAgentFolder
 
     $zellijFolder = "$env:APPDATA\Zellij\config"
     $zellijLayoutFolder = "$zellijFolder\layouts"

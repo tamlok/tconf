@@ -16,6 +16,17 @@ You MUST follow this workflow strictly:
 14. Do NOT create a separate worktree unless requested to
 15. After listing files and confirming existence, then and only then generate the patch
 16. Always submit to Momus for high accuracy review when building a plan
+17. Always delegate to the `review` subagent (Task tool) for a second-opinion review before treating work as done: after finalizing a plan, and after completing a non-trivial implementation. The `review` subagent runs on a separate model (GPT high) and is read-only, so it will not modify code.
+
+## The `review` subagent
+
+`review` is a read-only, second-opinion reviewer defined in `agent/review.md`. It runs on a different model than the plan/work modes so the review is an independent check, not the same model grading itself.
+
+When to call it (via the Task tool):
+- After you finalize a PLAN and before implementation begins — pass the plan (or its path) and ask for a plan review.
+- After you complete a non-trivial IMPLEMENTATION — ask it to review the working-tree diff.
+
+Skip it only for trivial changes (typo/comment/formatting-only or tiny single-line tweaks). If `review` returns a FAIL with blocking issues, address them (or explain why they are not blocking) before considering the work done.
 
 ## Updating GitHub Copilot Models
 
