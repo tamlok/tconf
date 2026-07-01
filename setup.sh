@@ -332,6 +332,7 @@ setup_config() {
 
     # kilo
     install_config "kilo/kilo.json" "$CONFIG_HOME/kilo/kilo.json"
+    install_config "kilo/AGENTS.md" "$CONFIG_HOME/kilo/AGENTS.md"
 
     # nushell
     local nu_dir

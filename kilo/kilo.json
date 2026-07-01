@@ -1,5 +1,6 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
+  "model": "github-copilot/claude-opus-4.8",
   "theme": "everforest",
   "permission": {
     "*": "allow",
