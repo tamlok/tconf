@@ -28,6 +28,35 @@ When to call it (via the Task tool):
 
 Skip it only for trivial changes (typo/comment/formatting-only or tiny single-line tweaks). If `review` returns a FAIL with blocking issues, address them (or explain why they are not blocking) before considering the work done.
 
+## Superpowers skills integration
+
+The `superpowers` plugin (declared in `kilo.json` `plugin`) exposes its skills to every
+agent through the `skill` tool. Availability is not activation — reach for them explicitly.
+
+At the start of any non-trivial dev task, load `using-superpowers` first, then load the
+skill that matches the current phase:
+
+- Brainstorm / design (plan mode): `brainstorming`, then `writing-plans`.
+- Implement a feature or bugfix: `test-driven-development`; for a written plan use
+  `executing-plans` (separate session) or `subagent-driven-development` (current session);
+  fan out independent work with `dispatching-parallel-agents`.
+- Any bug, test failure, or surprise: `systematic-debugging` before proposing a fix.
+- Before claiming done: `verification-before-completion` (run the checks, show the output),
+  then the mandatory `review` subagent gate (rule 17).
+- Authoring or editing skills themselves: `writing-skills`.
+
+### Kilo overrides (these win over the skill text)
+
+- **Worktrees**: ignore the git-stash and manual `git worktree` flows in
+  `using-git-worktrees` / `finishing-a-development-branch`. Use Kilo Agent Manager
+  worktrees and honor rule 14 (no separate worktree unless requested). Never `git stash` —
+  stashes are shared across Agent Manager worktrees.
+- **Code review**: `requesting-code-review` / `receiving-code-review` map onto the `review`
+  subagent (rules 16-17). Do not spawn a second reviewer; dispatch to `review` via the Task
+  tool and treat its verdict per rule 17.
+- **Commits**: TDD's "commit after green" does NOT apply. Only commit when explicitly asked,
+  and follow rule 13 (night-time author/commit date). Never auto-commit inside a skill loop.
+
 ## Updating GitHub Copilot Models
 
 When adding or updating models for the GitHub Copilot provider:
