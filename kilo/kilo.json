@@ -7,5 +7,54 @@
   "permission": {
     "*": "allow",
     "bash": "allow"
+  },
+  "provider": {
+    "github-copilot": {
+      "options": {
+        "headers": {
+          "Copilot-Integration-Id": "copilot-developer-cli",
+          "X-GitHub-Api-Version": "2026-06-01",
+          "User-Agent": "copilot/1.0.64"
+        }
+      },
+      "models": {
+        "claude-opus-4.8": {
+          "id": "claude-opus-4.8",
+          "name": "Claude Opus 4.8",
+          "reasoning": true,
+          "attachment": true,
+          "tool_call": true,
+          "limit": {
+            "context": 1000000,
+            "input": 936000,
+            "output": 64000
+          }
+        },
+        "gpt-5.5": {
+          "id": "gpt-5.5",
+          "name": "GPT-5.5",
+          "reasoning": true,
+          "attachment": true,
+          "tool_call": true,
+          "limit": {
+            "context": 1050000,
+            "input": 922000,
+            "output": 128000
+          }
+        },
+        "gemini-3.1-pro-preview": {
+          "id": "gemini-3.1-pro-preview",
+          "name": "Gemini 3.1 Pro Preview",
+          "reasoning": true,
+          "attachment": true,
+          "tool_call": true,
+          "limit": {
+            "context": 1000000,
+            "input": 936000,
+            "output": 64000
+          }
+        }
+      }
+    }
   }
 }
