@@ -105,8 +105,57 @@ opencode's model discovery doesn't send user headers, so extended models must be
 | gpt-5.5 | 1,050,000 | 922,000 | 128,000 |
 | gemini-3.1-pro-preview | 1,000,000 | 936,000 | 64,000 |
 
-### 4. Verification
-After updating, verify specs at:
+### 4. Establishing ground truth and verifying the config
+
+Do NOT trust the models.dev base catalog (`~/.cache/kilo/models.json`) for
+Copilot limits — it lags the live provider and is the source of stale values
+(e.g. opus inheriting a 200K/168000 context/input). This is a known upstream
+class of bug (opencode #31064, #28543, #20317). The **live Copilot API is the
+source of truth**; the doc pages below are only a secondary sanity check.
+
+#### Step 1 — Query the live Copilot models API (ground truth)
+The bearer token lives in the CLI auth file; use it against the models endpoint.
+Use `curl.exe` on Windows — `Invoke-RestMethod` mangles the JSON output.
+```pwsh
+$tok = (Get-Content -Raw "$env:USERPROFILE\.local\share\kilo\auth.json" |
+  ConvertFrom-Json).'github-copilot'.access   # a usable gho_ bearer token
+curl.exe -s https://api.githubcopilot.com/models -H "Authorization: Bearer $tok" |
+  ConvertFrom-Json | Select-Object -Expand data |
+  Select-Object id, @{n='context';e={$_.capabilities.limits.max_context_window_tokens}},
+    @{n='input';e={$_.capabilities.limits.max_prompt_tokens}},
+    @{n='output';e={$_.capabilities.limits.max_output_tokens}}
+```
+Map the fields to Kilo's `limit` schema: `context` = `max_context_window_tokens`,
+`input` = `max_prompt_tokens`, `output` = `max_output_tokens`. The
+`Copilot-Integration-Id` does not change these values (billing tiers like
+`default`/`long_context` are pricing-only, not request caps). Confirm the exact
+served model id here too — e.g. `gemini-3.1-pro-preview` is served while
+`gemini-3-pro-preview` is not.
+
+#### Step 2 — Update and deploy the config
+Edit all three keys in `kilo/kilo.json` (`limit.context`/`input`/`output`, and
+the model `id`/`name`/key if it was renamed). `input` is NOT cosmetic: when it is
+absent Kilo inherits the stale models.dev value. Then deploy to the live config
+location (`setup.sh` maps `kilo/kilo.json` -> `$CONFIG_HOME/kilo/kilo.json`; on
+Windows there is no `setup.ps1`, so copy manually):
+```pwsh
+Copy-Item "kilo\kilo.json" "$env:USERPROFILE\.config\kilo\kilo.json" -Force
+```
+
+#### Step 3 — Verify the resolved values
+A running Kilo caches the resolved model, so **fully restart** first, then read
+back what Kilo actually resolves (not just what the file says):
+```pwsh
+kilo serve --port 8787   # in a separate process
+curl.exe -s http://127.0.0.1:8787/config/providers |
+  ConvertFrom-Json | ForEach-Object {
+    ($_.providers | Where-Object id -eq 'github-copilot').models
+  }
+```
+Confirm each model's `limit.context/input/output` matches Step 1, the renamed id
+is present, and any old id is gone.
+
+#### Secondary cross-check (docs)
 - Anthropic: https://platform.claude.com/docs/en/about-claude/models
 - OpenAI: https://developers.openai.com/api/docs/models
 - Google: https://ai.google.dev/gemini-api/docs
