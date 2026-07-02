@@ -125,7 +125,7 @@ ubuntu_pkg_install() {
 # Tools not in Ubuntu's default repos, installed via their documented methods.
 ubuntu_install_tools() {
     install_neovim            # official prebuilt release (apt's is too old)
-    install_opencode          # official install script
+    # install_opencode          # official install script (disabled)
     install_kilo              # kilo CLI via npm (@kilocode/cli)
     ubuntu_install_nushell    # official apt.fury.io repository
     install_zellij            # cargo (recommended) or prebuilt binary
@@ -186,12 +186,13 @@ macos_pkg_install() {
 
 # On macOS everything is available via Homebrew (the documented method).
 macos_install_tools() {
-    if ! command -v opencode >/dev/null 2>&1; then
-        log "Installing opencode via Homebrew"
-        brew install anomalyco/tap/opencode || warn "opencode install failed"
-    else
-        log "opencode already installed"
-    fi
+    # opencode installation disabled (using kilo instead)
+    # if ! command -v opencode >/dev/null 2>&1; then
+    #     log "Installing opencode via Homebrew"
+    #     brew install anomalyco/tap/opencode || warn "opencode install failed"
+    # else
+    #     log "opencode already installed"
+    # fi
     if ! command -v nu >/dev/null 2>&1; then
         log "Installing nushell via Homebrew"
         brew install nushell || warn "nushell install failed"
