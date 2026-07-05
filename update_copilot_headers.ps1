@@ -7,7 +7,7 @@
 #      User-Agent tracks the installed CLI version (the dynamic value), while
 #      Copilot-Integration-Id and X-GitHub-Api-Version are enforced constants.
 #   4. Copies the updated opencode.json to the user config folder
-#      (%USERPROFILE%\.config\opencode), mirroring setup_win.ps1.
+#      (%USERPROFILE%\.config\opencode), mirroring setup.ps1.
 #
 # The `copilot-developer-cli` integration id is what unlocks the extended model
 # catalog and avoids "model is not supported" errors.
@@ -111,7 +111,7 @@ if ($text -eq $originalText) {
     Write-Host "Updated headers in $RepoConfig"
 }
 
-# 6. Deploy to the user config folder (mirror setup_win.ps1).
+# 6. Deploy to the user config folder (mirror setup.ps1).
 if (-Not $NoDeploy) {
     New-Item -ItemType Directory -Force -Path $UserConfigDir | Out-Null
     $dest = Join-Path $UserConfigDir 'opencode.json'

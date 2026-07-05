@@ -137,9 +137,10 @@ Edit all three keys in `kilo/kilo.json` (`limit.context`/`input`/`output`, and
 the model `id`/`name`/key if it was renamed). `input` is NOT cosmetic: when it is
 absent Kilo inherits the stale models.dev value. Then deploy to the live config
 location (`setup.sh` maps `kilo/kilo.json` -> `$CONFIG_HOME/kilo/kilo.json`; on
-Windows there is no `setup.ps1`, so copy manually):
+Windows run the config-only action of `setup.ps1`, which copies `kilo\kilo.json`
+plus `AGENTS.md` and `agent\*.md` into `%USERPROFILE%\.config\kilo`):
 ```pwsh
-Copy-Item "kilo\kilo.json" "$env:USERPROFILE\.config\kilo\kilo.json" -Force
+.\setup.ps1 -Action config
 ```
 
 #### Step 3 — Verify the resolved values
