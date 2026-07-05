@@ -1,0 +1,4 @@
+# Store and check out all text files with LF endings on every platform.
+# Without this, core.autocrlf=true reintroduces CRLF churn on Windows.
+# `text=auto` still auto-detects binary files (fonts, images) and leaves them alone.
+* text=auto eol=lf
