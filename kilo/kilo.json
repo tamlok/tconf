@@ -1,6 +1,5 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
-  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
   "model": "github-copilot/claude-opus-4.8",
   "theme": "everforest",
   "snapshot": false,
