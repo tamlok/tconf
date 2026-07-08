@@ -82,6 +82,8 @@ function Setup-Config
     Remove-If-Junction $kiloFolder
     New-Item -ItemType Directory -Force -Path $kiloFolder | Out-Null
     Write-Host "Copying config to $kiloFolder"
+    # Remove leftover kilo.json from before the rename (it would still merge under kilo.jsonc)
+    Remove-Item -Force "$kiloFolder\kilo.json" -ErrorAction SilentlyContinue
     Copy-Item -Force "$PSScriptRoot\kilo\kilo.jsonc" $kiloFolder
     Copy-Item -Force "$PSScriptRoot\kilo\AGENTS.md" $kiloFolder
     $kiloAgentFolder = "$kiloFolder\agent"

@@ -332,6 +332,8 @@ setup_config() {
     install_config "wezterm.lua" "$CONFIG_HOME/wezterm/wezterm.lua"
 
     # kilo
+    # Remove leftover kilo.json from before the rename (it would still merge under kilo.jsonc)
+    rm -f "$CONFIG_HOME/kilo/kilo.json"
     install_config "kilo/kilo.jsonc" "$CONFIG_HOME/kilo/kilo.jsonc"
     install_config "kilo/AGENTS.md" "$CONFIG_HOME/kilo/AGENTS.md"
 
