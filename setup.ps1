@@ -183,7 +183,7 @@ function Main
 
     Scoop-Install -command "zellij" -package "zellij"
 
-    winget install Microsoft.Coreutils
+    # winget install Microsoft.Coreutils
 
     # Kilo CLI requires node/npm. Install node first, then the CLI via npm.
     $newNode = Scoop-Install -command "node" -package "nodejs"
