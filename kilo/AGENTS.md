@@ -30,8 +30,15 @@ Skip it only for trivial changes (typo/comment/formatting-only or tiny single-li
 
 ## Superpowers skills integration
 
-The `superpowers` plugin (declared in `kilo.json` `plugin`) exposes its skills to every
-agent through the `skill` tool. Availability is not activation — reach for them explicitly.
+The superpowers skills come from the external `obra/superpowers` plugin, but it is **not**
+currently declared in any Kilo config: `kilo.jsonc` has no `plugin` field, so
+the skills are not loaded and the `skill` tool only exposes Kilo built-ins (e.g.
+`kilo-config`). (The repo's only configured plugin, `oh-my-openagent`, is opencode-side in
+`opencode/opencode.json` and unrelated to the Kilo CLI.) To activate the skills below, add
+the plugin to a `plugin` array in `kilo/kilo.jsonc` — e.g.
+`"superpowers@git+https://github.com/obra/superpowers.git"` — and redeploy with
+`setup.ps1 -Action config`. Until then this section is aspirational; availability is not
+activation — reach for the skills explicitly once the plugin is installed.
 
 At the start of any non-trivial dev task, load `using-superpowers` first, then load the
 skill that matches the current phase:
@@ -133,11 +140,11 @@ served model id here too — e.g. `gemini-3.1-pro-preview` is served while
 `gemini-3-pro-preview` is not.
 
 #### Step 2 — Update and deploy the config
-Edit all three keys in `kilo/kilo.json` (`limit.context`/`input`/`output`, and
+Edit all three keys in `kilo/kilo.jsonc` (`limit.context`/`input`/`output`, and
 the model `id`/`name`/key if it was renamed). `input` is NOT cosmetic: when it is
 absent Kilo inherits the stale models.dev value. Then deploy to the live config
-location (`setup.sh` maps `kilo/kilo.json` -> `$CONFIG_HOME/kilo/kilo.json`; on
-Windows run the config-only action of `setup.ps1`, which copies `kilo\kilo.json`
+location (`setup.sh` maps `kilo/kilo.jsonc` -> `$CONFIG_HOME/kilo/kilo.jsonc`; on
+Windows run the config-only action of `setup.ps1`, which copies `kilo\kilo.jsonc`
 plus `AGENTS.md` and `agent\*.md` into `%USERPROFILE%\.config\kilo`):
 ```pwsh
 .\setup.ps1 -Action config

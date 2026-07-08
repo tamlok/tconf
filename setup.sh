@@ -332,7 +332,7 @@ setup_config() {
     install_config "wezterm.lua" "$CONFIG_HOME/wezterm/wezterm.lua"
 
     # kilo
-    install_config "kilo/kilo.json" "$CONFIG_HOME/kilo/kilo.json"
+    install_config "kilo/kilo.jsonc" "$CONFIG_HOME/kilo/kilo.jsonc"
     install_config "kilo/AGENTS.md" "$CONFIG_HOME/kilo/AGENTS.md"
 
     # nushell

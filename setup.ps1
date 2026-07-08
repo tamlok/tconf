@@ -82,7 +82,7 @@ function Setup-Config
     Remove-If-Junction $kiloFolder
     New-Item -ItemType Directory -Force -Path $kiloFolder | Out-Null
     Write-Host "Copying config to $kiloFolder"
-    Copy-Item -Force "$PSScriptRoot\kilo\kilo.json" $kiloFolder
+    Copy-Item -Force "$PSScriptRoot\kilo\kilo.jsonc" $kiloFolder
     Copy-Item -Force "$PSScriptRoot\kilo\AGENTS.md" $kiloFolder
     $kiloAgentFolder = "$kiloFolder\agent"
     New-Item -ItemType Directory -Force -Path $kiloAgentFolder | Out-Null
