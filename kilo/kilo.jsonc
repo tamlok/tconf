@@ -7,6 +7,13 @@
     "*": "allow",
     "bash": "allow"
   },
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": ["codegraph", "serve", "--mcp"],
+      "enabled": true
+    }
+  },
   "provider": {
     "github-copilot": {
       "options": {
