@@ -168,6 +168,110 @@ is present, and any old id is gone.
 - OpenAI: https://developers.openai.com/api/docs/models
 - Google: https://ai.google.dev/gemini-api/docs
 
+## GitHub Copilot CLI (`copilot`) Configuration
+
+This is the standalone `@github/copilot` binary, **not** the `github-copilot`
+provider in `kilo/kilo.jsonc` / `opencode/opencode.json`. The two are unrelated
+and gated differently.
+
+### Which files are ours
+
+| Path | Role |
+|---|---|
+| `~/.copilot/settings.json` | User-editable settings. Tracked here as `copilot/settings.json`. |
+| `~/.copilot/config.json` | CLI-managed app state (`trustedFolders`, first-launch flags). Do **not** track or delete. |
+| `~/.copilot/permissions-config.json` | Saved per-project tool approvals. Do **not** track or delete. |
+
+Auth is **not** stored under `~/.copilot` — the CLI inherits it from the `gh`
+CLI credential store (`GitHub CLI authenticated with valid token` in the debug
+log), which is why the temp-`COPILOT_HOME` probe below still authenticates.
+
+`COPILOT_HOME` overrides the whole directory; the path is `~/.copilot` on every
+OS (it is not XDG-based), so `setup.sh` targets `$HOME/.copilot`, not
+`$CONFIG_HOME`. Deploy with `.\setup.ps1 -Action config` (or `./setup.sh config`).
+Both scripts replace **only** `settings.json` — never junction/clear `~/.copilot`,
+which holds `session-state/`, `session-store.db`, `logs/` and the files above.
+Note the CLI itself rewrites `settings.json` when `/model`, `/settings`, `/theme`
+or a persisted URL approval changes a setting, so re-deploying clobbers those.
+
+### Model availability is gated by billing plan, not by CLI version
+
+The CLI filters the CAPI catalog by `billing.restricted_to` against the account's
+plan. Both `copilot help config`'s model list and the `/models` REST response
+**over-report** — REST reports e.g. `claude-opus-5` as `model_picker_enabled:
+true` while the CLI rejects it with `Model "..." is not available`. A mis-pinned
+model does not hard-fail: the CLI logs a warning and silently falls back to its
+default, so always confirm via the CLI's own debug log.
+
+The probe below is the authoritative check. It costs no AI credits **only when
+the candidate is rejected** (resolution fails before any model call) — if the
+candidate *is* available the CLI runs a real turn and bills for it. It **must**
+set `COPILOT_CACHE_HOME`: the catalog is cached outside `COPILOT_HOME`, so
+without a cold cache the `fetched models from CAPI /models` line is never
+emitted.
+
+```pwsh
+$candidate = 'claude-opus-5'
+$h = Join-Path $env:TEMP ("cp-probe-h-" + [guid]::NewGuid())
+$c = Join-Path $env:TEMP ("cp-probe-c-" + [guid]::NewGuid())
+New-Item -ItemType Directory -Force -Path $h, $c | Out-Null
+$oldHome = $env:COPILOT_HOME; $oldCache = $env:COPILOT_CACHE_HOME
+try {
+    $env:COPILOT_HOME = $h; $env:COPILOT_CACHE_HOME = $c
+    & copilot -p "hi" --model $candidate --log-level all --no-color
+} finally {
+    $env:COPILOT_HOME = $oldHome; $env:COPILOT_CACHE_HOME = $oldCache
+}
+$log = (Get-ChildItem "$h\logs" -File -ErrorAction SilentlyContinue |
+    Sort-Object LastWriteTime | Select-Object -Last 1).FullName
+# Guard first: with $log unset, PowerShell drops the argument and rg silently
+# searches the CWD instead, so the negative assertion below would read as a
+# false "selectable".
+if (-not $log) { throw "probe produced no log - result is meaningless" }
+rg -q 'fetched models from CAPI /models' $log
+if ($LASTEXITCODE -ne 0) { throw "no catalog fetch in log - result is meaningless" }
+# Authoritative result: absence of this warning means $candidate is selectable.
+rg -o "Model '$candidate' from CLI argument is not available" $log
+# Full catalog incl. billing.restricted_to (single JSON-in-string line):
+rg -o 'fetched models from CAPI /models .*' $log
+```
+
+The current pin is `claude-sonnet-5` (individual Pro plan: every Opus SKU,
+`claude-fable-5`, `gpt-5.5` and `gpt-5.6-sol` are restricted to
+`pro_plus`/`business`/`enterprise`/`max`). Re-run the probe whenever the CLI
+auto-updates or entitlements change — the pin goes stale silently.
+
+### Effort and context tier
+
+`effortLevel` (`low`/`medium`/`high`/`xhigh`) and `contextTier`
+(`default`/`long_context`) are both observable in a `--log-level all` run:
+`"model": "capi:claude-sonnet-5:defaultReasoningEffort=high"` and a resolved
+`"max_context_window_tokens": 1000000` (the `default` tier resolves to
+`264000`). Match the pretty-printed form *with* the space after the colon — the
+raw catalog dump on the `fetched models from CAPI` line is compact and
+JSON-escaped and carries every model's window size, so a bare-number grep
+matches regardless of tier. Do not assert on `max_prompt_tokens` — `936000`
+also appears inside the `billing.token_prices.long_context` block on a
+`default`-tier run.
+
+### Autopilot
+
+There is **no** setting that starts a session in autopilot. `stayInAutopilot`
+only keeps you there between tasks; the initial mode comes from `--autopilot`
+(or `--mode autopilot`), which is supplied by the nushell alias in
+`nushell/config.nu` together with `--allow-all-tools` (autopilot auto-denies
+anything needing approval, and `--allow-all-tools` is the flag its help text
+names as required). The alias deliberately does **not** use `--yolo`, which is
+`--allow-all-tools --allow-all-paths --allow-all-urls` — that would disable file
+path verification and make the `allowedUrls` list dead configuration. The alias
+is nushell-only; `copilot` launched from pwsh starts interactive. Escape hatch:
+`^copilot ...`.
+
+Do not add `logLevel: "all"` to the tracked settings: it persists full prompts,
+tool calls and verbatim file contents to unrotated plaintext under
+`~/.copilot/logs/`. Pass `--log-level all` per invocation instead, as the probe
+above does.
+
 ## Adding a New Linux Distro to `setup.sh`
 
 `setup.sh` (Linux/macOS) uses a pluggable package-manager abstraction. Platform

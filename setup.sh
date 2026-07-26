@@ -347,6 +347,9 @@ setup_config() {
     install_config "claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
     install_config "claude/settings.json" "$HOME/.claude/settings.json"
 
+    # copilot CLI (~/.copilot is not XDG-based)
+    install_config "copilot/settings.json" "$HOME/.copilot/settings.json"
+
     # opencode
     install_config "opencode/AGENTS.md" "$CONFIG_HOME/opencode/AGENTS.md"
     install_config "opencode/oh-my-openagent.json" "$CONFIG_HOME/opencode/oh-my-openagent.json"

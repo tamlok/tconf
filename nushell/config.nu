@@ -110,3 +110,11 @@ $env.config = {
         reset_application_mode: true
         }
 }
+
+# GitHub Copilot CLI: start every session in autopilot, which requires
+# --allow-all-tools to avoid auto-denying and stalling. Deliberately NOT --yolo:
+# that also implies --allow-all-paths and --allow-all-urls, so path verification
+# and the `allowedUrls` list in copilot/settings.json would stop applying.
+# `^copilot` calls the external binary directly, so the alias does not recurse.
+# Escape hatch: run `^copilot ...` to get the un-aliased CLI.
+alias copilot = ^copilot --autopilot --allow-all-tools

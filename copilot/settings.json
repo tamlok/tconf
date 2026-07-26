@@ -1,0 +1,10 @@
+{
+  "model": "claude-sonnet-5",
+  "effortLevel": "high",
+  "contextTier": "long_context",
+  "stayInAutopilot": true,
+  "allowedUrls": [
+    "https://api.github.com",
+    "https://api.enterprise.githubcopilot.com"
+  ]
+}

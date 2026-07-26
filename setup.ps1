@@ -90,6 +90,14 @@ function Setup-Config
     New-Item -ItemType Directory -Force -Path $kiloAgentFolder | Out-Null
     Copy-Item -Force "$PSScriptRoot\kilo\agent\*.md" $kiloAgentFolder
 
+    # GitHub Copilot CLI: only settings.json is tracked. Do NOT clear this folder -
+    # it holds live CLI state (config.json, permissions-config.json, session-state/, logs/).
+    $copilotFolder = "$env:USERPROFILE\.copilot"
+    New-Item -ItemType Directory -Force -Path $copilotFolder | Out-Null
+    Write-Host "Copying config to $copilotFolder"
+    Remove-If-Link "$copilotFolder\settings.json"
+    Copy-Item -Force "$PSScriptRoot\copilot\settings.json" $copilotFolder
+
     $zellijFolder = "$env:APPDATA\Zellij\config"
     $zellijLayoutFolder = "$zellijFolder\layouts"
     Write-Host "Copying config to $zellijFolder and $zellijLayoutFolder"
