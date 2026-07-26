@@ -1,6 +1,6 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
-  "model": "github-copilot/claude-opus-4.8",
+  "model": "github-copilot/claude-opus-5",
   "theme": "everforest",
   "snapshot": false,
   "permission": {
@@ -24,9 +24,9 @@
         }
       },
       "models": {
-        "claude-opus-4.8": {
-          "id": "claude-opus-4.8",
-          "name": "Claude Opus 4.8",
+        "claude-opus-5": {
+          "id": "claude-opus-5",
+          "name": "Claude Opus 5",
           "reasoning": true,
           "attachment": true,
           "tool_call": true,

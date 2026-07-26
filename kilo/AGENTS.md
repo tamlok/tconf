@@ -108,7 +108,7 @@ opencode's model discovery doesn't send user headers, so extended models must be
 ### 3. Current Model Specs (as of July 2026)
 | Model | Context | Input | Output |
 |-------|---------|-------|--------|
-| claude-opus-4.8 | 1,000,000 | 936,000 | 64,000 |
+| claude-opus-5 | 1,000,000 | 936,000 | 64,000 |
 | gpt-5.6-sol | 1,050,000 | 922,000 | 128,000 |
 | gemini-3.1-pro-preview | 1,000,000 | 936,000 | 64,000 |
 
