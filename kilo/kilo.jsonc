@@ -28,6 +28,7 @@
           "id": "claude-opus-5",
           "name": "Claude Opus 5",
           "reasoning": true,
+          "provider": { "npm": "@ai-sdk/github-copilot", "api": "https://api.githubcopilot.com" },
           "attachment": true,
           "tool_call": true,
           "limit": {
