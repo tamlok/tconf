@@ -183,7 +183,8 @@ function Main
     }
 
     $newNvy = Scoop-Install -command "nvy" -package "nvy"
-    if ($newNvy) {
+    # Create the launcher whenever it is missing, not only on a fresh install.
+    if ($newNvy -or (-Not (Test-Path -Path "C:\Windows\nvyb.cmd"))) {
         $CMD = "start /b nvy"
         $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
         [System.IO.File]::WriteAllLines("C:\Windows\nvyb.cmd", $CMD, $Utf8NoBomEncoding)
@@ -277,14 +278,58 @@ function Scoop-Install
         return $false
     }
 
-    Write-Host "Installing $package"
-    scoop install $package
+    # The app may already be installed while its shim is missing (e.g. a GUI
+    # shim exe removed by antivirus). `scoop install` is a no-op in that case,
+    # so recreate the shims with `scoop reset` instead. Ask scoop itself whether
+    # the app is installed: `scoop prefix` honours configured, portable and
+    # global roots, which a hand-rolled path guess would miss.
+    $null = scoop prefix $package 2>&1
+    $installed = ($LASTEXITCODE -eq 0)
+
+    if ($installed) {
+        Write-Host "$package is installed but '$command' is not on PATH; resetting shims"
+        scoop reset $package | Out-Host
+    } else {
+        Write-Host "Installing $package"
+        scoop install $package | Out-Host
+    }
+    $scoopExit = $LASTEXITCODE
+
+    Refresh-Env
+
+    # `scoop` can report per-app failures without a useful exit code, so the
+    # real postcondition is that the command is now resolvable.
+    if (-Not (Check-Command-Exists($command))) {
+        throw "Failed to make '$command' available via scoop package '$package' (scoop exit code $scoopExit)"
+    }
+
     return $true
 }
 
 function Refresh-Env
 {
-    $Env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Process")
+    # Pick up User/Machine PATH entries registered after this process started
+    # (e.g. a fresh scoop shims directory) while keeping process-only entries
+    # and their precedence.
+    $seen = New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
+    $merged = New-Object 'System.Collections.Generic.List[string]'
+    $sources = @($Env:Path)
+    foreach ($scope in @("Machine", "User")) {
+        $sources += ,([System.Environment]::GetEnvironmentVariable("Path", $scope))
+    }
+    foreach ($source in $sources) {
+        if (-Not $source) { continue }
+        foreach ($part in ($source -split ';')) {
+            if ($part -eq '') { continue }
+            # Deduplicate on a normalized key, but keep the entry verbatim:
+            # trimming a trailing backslash would turn the root `C:\` into the
+            # drive-relative `C:`.
+            $key = $part
+            if ($key -ne [System.IO.Path]::GetPathRoot($key)) { $key = $key.TrimEnd('\') }
+            if ($seen.Add($key)) { $merged.Add($part) }
+        }
+    }
+    $Env:Path = ($merged -join ';')
 }
 
 function Setup-Neovim
