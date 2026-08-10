@@ -191,7 +191,13 @@ function Main
 
     python3 -m pip install --user --upgrade pynvim
 
-    Scoop-Install -command "zellij" -package "zellij"
+    if (Check-Command-Exists "zellij") {
+        Write-Host "zellij already exists"
+    } else {
+        Write-Host "Installing zellij-nightly"
+        scoop bucket add zellij-nightly https://github.com/tamlok/scoop-zellij-nightly
+        scoop install zellij-nightly/zellij-nightly
+    }
 
     # winget install Microsoft.Coreutils
 
