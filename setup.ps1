@@ -167,6 +167,12 @@ function Main
 
     Scoop-Install -command "opencode" -package "opencode"
 
+    # omp (Oh My Pi coding agent). Scoop's main bucket ships the official
+    # prebuilt release as the `oh-my-pi` manifest (bin `omp.exe`) and
+    # autoupdates it from the GitHub release feed, so no separate installer
+    # script is needed on Windows.
+    Scoop-Install -command "omp" -package "oh-my-pi"
+
     # Don't use Check-Command-Exists for python: Windows ships a Microsoft Store
     # stub `python.exe` that satisfies Get-Command but errors on execution.
     # Actually invoke `python --version` and check the exit code instead.
