@@ -127,7 +127,6 @@ ubuntu_install_tools() {
     install_neovim            # official prebuilt release (apt's is too old)
     # install_opencode          # official install script (disabled)
     install_kilo              # kilo CLI via npm (@kilocode/cli)
-    install_omp               # omp coding agent via the official installer
     ubuntu_install_nushell    # official apt.fury.io repository
     install_zellij            # cargo (recommended) or prebuilt binary
 }
@@ -207,7 +206,6 @@ macos_install_tools() {
         log "zellij already installed"
     fi
     install_kilo    # kilo CLI via npm (@kilocode/cli)
-    install_omp     # omp coding agent via the official installer
 }
 
 # --------------------------------------------------------------------------
@@ -240,22 +238,6 @@ install_kilo() {
     fi
     log "Installing/upgrading kilo CLI (@kilocode/cli)"
     npm install -g @kilocode/cli || warn "kilo CLI install failed"
-}
-
-# https://omp.sh (redirects to can1357/oh-my-pi scripts/install.sh)
-# There is no distro package or Homebrew formula, so both platforms use the
-# upstream installer. It installs the prebuilt release binary into ~/.local/bin
-# (already put on PATH by setup_env), or installs the package globally with bun
-# when a bun matching the host architecture is present. Existing installs are
-# upgraded in place with `omp update`, which is non-interactive.
-install_omp() {
-    if command -v omp >/dev/null 2>&1; then
-        log "Upgrading omp to the latest version"
-        omp update || warn "omp update failed"
-        return 0
-    fi
-    log "Installing latest omp"
-    curl -fsSL https://omp.sh/install | sh || warn "omp install failed"
 }
 
 # https://zellij.dev/documentation/installation
