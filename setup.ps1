@@ -167,6 +167,10 @@ function Main
 
     Scoop-Install -command "opencode" -package "opencode"
 
+    # oh-my-pi coding agent; the `oh-my-pi` manifest in the main bucket ships
+    # the `omp` shim, so the command name differs from the package name.
+    Scoop-Install -command "omp" -package "oh-my-pi"
+
     # Don't use Check-Command-Exists for python: Windows ships a Microsoft Store
     # stub `python.exe` that satisfies Get-Command but errors on execution.
     # Actually invoke `python --version` and check the exit code instead.

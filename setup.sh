@@ -127,6 +127,7 @@ ubuntu_install_tools() {
     install_neovim            # official prebuilt release (apt's is too old)
     # install_opencode          # official install script (disabled)
     install_kilo              # kilo CLI via npm (@kilocode/cli)
+    install_omp               # oh-my-pi coding agent (omp.sh install script)
     ubuntu_install_nushell    # official apt.fury.io repository
     install_zellij            # cargo (recommended) or prebuilt binary
 }
@@ -206,6 +207,7 @@ macos_install_tools() {
         log "zellij already installed"
     fi
     install_kilo    # kilo CLI via npm (@kilocode/cli)
+    install_omp     # oh-my-pi coding agent (omp.sh install script)
 }
 
 # --------------------------------------------------------------------------
@@ -238,6 +240,18 @@ install_kilo() {
     fi
     log "Installing/upgrading kilo CLI (@kilocode/cli)"
     npm install -g @kilocode/cli || warn "kilo CLI install failed"
+}
+
+# https://omp.sh  (official install script, macOS + Linux)
+# Installs the `omp` binary into the user's local bin. Idempotent: skips when
+# the command is already on PATH (omp updates itself in place).
+install_omp() {
+    if command -v omp >/dev/null 2>&1; then
+        log "oh-my-pi (omp) already installed"
+        return 0
+    fi
+    log "Installing oh-my-pi (omp)"
+    curl -fsSL https://omp.sh/install | sh || warn "oh-my-pi install failed"
 }
 
 # https://zellij.dev/documentation/installation
