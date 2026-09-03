@@ -1,9 +1,8 @@
 ---
 description: Second-opinion reviewer for a plan OR an implementation. Read-only; returns a verdict and evidence-backed findings without editing code. The plan/work modes should delegate to this subagent to review their output when appropriate.
 mode: subagent
-model: github-copilot/gpt-5.6-sol
-reasoningEffort: high
-textVerbosity: high
+model: github-copilot/grok-4.6
+variant: high
 temperature: 0.1
 color: "#F5A623"
 tools:
