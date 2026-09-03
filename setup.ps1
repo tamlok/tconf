@@ -98,7 +98,7 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\omp\AGENTS.md" $ompFolder
     Copy-Item -Force "$PSScriptRoot\omp\WATCHDOG.md" $ompFolder
     if (Get-Command omp -ErrorAction SilentlyContinue) {
-        $ompModelRoles = '{"default":"github-copilot/gpt-5.6-sol-1m:high","smol":"github-copilot/gpt-5.6-luna-1m:low","slow":"github-copilot/gpt-5.6-sol-1m:high","plan":"github-copilot/gpt-5.6-sol-1m:high","advisor":"github-copilot/gemini-3.1-pro-preview:high"}'
+        $ompModelRoles = '{"default":"github-copilot/gpt-5.6-sol-1m:high","smol":"github-copilot/gpt-5.6-luna-1m:low","slow":"github-copilot/gpt-5.6-sol-1m:high","plan":"github-copilot/gpt-5.6-sol-1m:high","advisor":"github-copilot/grok-4.6:high"}'
         & omp config set modelRoles $ompModelRoles
         if ($LASTEXITCODE -ne 0) { throw "Failed to configure OMP model roles" }
         & omp config set advisor.enabled true
