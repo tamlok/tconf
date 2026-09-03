@@ -99,7 +99,13 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\omp\WATCHDOG.md" $ompFolder
     if (Get-Command omp -ErrorAction SilentlyContinue) {
         $ompModelRoles = '{"default":"github-copilot/gpt-5.6-sol-1m:high","smol":"github-copilot/gpt-5.6-luna-1m:low","slow":"github-copilot/gpt-5.6-sol-1m:high","plan":"github-copilot/gpt-5.6-sol-1m:high","advisor":"github-copilot/grok-4.6:high"}'
-        & omp config set modelRoles $ompModelRoles
+        $ompModelRolesArgument = $ompModelRoles
+        $nativeArgumentPassing = Get-Variable -Name PSNativeCommandArgumentPassing -ValueOnly -ErrorAction SilentlyContinue
+        if ($PSVersionTable.PSEdition -eq 'Desktop' -or $nativeArgumentPassing -eq 'Legacy') {
+            # Legacy native argument passing strips unescaped JSON quotes.
+            $ompModelRolesArgument = $ompModelRoles.Replace('"', '\"')
+        }
+        & omp config set modelRoles $ompModelRolesArgument
         if ($LASTEXITCODE -ne 0) { throw "Failed to configure OMP model roles" }
         & omp config set advisor.enabled true
         if ($LASTEXITCODE -ne 0) { throw "Failed to enable the OMP advisor" }
