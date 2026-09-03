@@ -2,7 +2,7 @@
 # Le Tan (tamlokveer at gmail.com)
 # https://github.com/tamlok/tnvim
 
-param([string]$Action='', [switch]$Force=$false, [string]$WorkingDirectory='')
+param([string]$Action='', [switch]$Force=$false, [switch]$Fonts=$false, [string]$WorkingDirectory='')
 
 # Remove a file if it is a symlink or hardlink (link count > 1), so Copy-Item creates a fresh independent copy
 function Remove-If-Link
@@ -152,13 +152,19 @@ function Main
     if ($WorkingDirectory -ne '') {
         Set-Location -Path "$WorkingDirectory"
     }
+    if ($Fonts) {
+        Check-Admin
+        . "$PSScriptRoot\install_font.ps1"
+        Install-Fonts -Force
+        return
+    }
 
     if ($Action -eq 'config') {
         Setup-Config
         return
     }
 
-    . '.\install_font.ps1'
+    . "$PSScriptRoot\install_font.ps1"
 
     Install-Fonts
 
@@ -271,6 +277,9 @@ function Check-Admin
         if ($Force) {
             $arguments += ' -Force'
         }
+        if ($Fonts) {
+            $arguments += ' -Fonts'
+        }
         $arguments += " -WorkingDirectory `"" + (Get-Location).Path + '"'
         if ($Action -ne '') {
             $arguments += " -Action `"$Action`""
@@ -283,8 +292,10 @@ function Check-Admin
 
 function Install-Fonts
 {
-    $fontFolder = (Get-Item '.\fonts').FullName
-    Install-Font "$fontFolder"
+    Param([switch]$Force=$false)
+
+    $fontFolder = (Get-Item "$PSScriptRoot\fonts").FullName
+    Install-Font "$fontFolder" -Force:$Force
 }
 
 function Check-Command-Exists
