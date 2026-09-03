@@ -2,7 +2,7 @@
 # Le Tan (tamlokveer at gmail.com)
 # https://github.com/tamlok/tnvim
 
-param([string]$Action='', [switch]$Force=$false, [switch]$Fonts=$false, [string]$WorkingDirectory='')
+param([string]$Action='', [switch]$Force=$false, [string]$WorkingDirectory='')
 
 # Remove a file if it is a symlink or hardlink (link count > 1), so Copy-Item creates a fresh independent copy
 function Remove-If-Link
@@ -152,7 +152,7 @@ function Main
     if ($WorkingDirectory -ne '') {
         Set-Location -Path "$WorkingDirectory"
     }
-    if ($Fonts) {
+    if ($Action -eq 'fonts') {
         Check-Admin
         . "$PSScriptRoot\install_font.ps1"
         Install-Fonts -Force
@@ -276,9 +276,6 @@ function Check-Admin
         $arguments = "-NoExit -ExecutionPolicy Bypass -File `"$PSCommandPath`""
         if ($Force) {
             $arguments += ' -Force'
-        }
-        if ($Fonts) {
-            $arguments += ' -Fonts'
         }
         $arguments += " -WorkingDirectory `"" + (Get-Location).Path + '"'
         if ($Action -ne '') {
