@@ -90,6 +90,25 @@ function Setup-Config
     New-Item -ItemType Directory -Force -Path $kiloAgentFolder | Out-Null
     Copy-Item -Force "$PSScriptRoot\kilo\agent\*.md" $kiloAgentFolder
 
+    # OMP keeps sessions and settings alongside config, so copy only tracked guidance
+    # and update the intended settings through its CLI.
+    $ompFolder = "$HOME\.omp\agent"
+    New-Item -ItemType Directory -Force -Path $ompFolder | Out-Null
+    Write-Host "Copying config to $ompFolder"
+    Copy-Item -Force "$PSScriptRoot\omp\AGENTS.md" $ompFolder
+    Copy-Item -Force "$PSScriptRoot\omp\WATCHDOG.md" $ompFolder
+    if (Get-Command omp -ErrorAction SilentlyContinue) {
+        $ompModelRoles = '{"default":"github-copilot/gpt-5.6-sol-1m:high","smol":"github-copilot/gpt-5.6-luna-1m:low","slow":"github-copilot/gpt-5.6-sol-1m:high","plan":"github-copilot/gpt-5.6-sol-1m:high","advisor":"github-copilot/gemini-3.1-pro-preview:high"}'
+        & omp config set modelRoles $ompModelRoles
+        if ($LASTEXITCODE -ne 0) { throw "Failed to configure OMP model roles" }
+        & omp config set advisor.enabled true
+        if ($LASTEXITCODE -ne 0) { throw "Failed to enable the OMP advisor" }
+        & omp config set advisor.syncBacklog 1
+        if ($LASTEXITCODE -ne 0) { throw "Failed to configure OMP advisor synchronization" }
+    } else {
+        Write-Warning "omp not found; copied guidance but skipped OMP model and advisor settings"
+    }
+
     # GitHub Copilot CLI: only settings.json is tracked. Do NOT clear this folder -
     # it holds live CLI state (config.json, permissions-config.json, session-state/, logs/).
     $copilotFolder = "$env:USERPROFILE\.copilot"
