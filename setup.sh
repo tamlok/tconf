@@ -358,7 +358,7 @@ setup_config() {
     install_config "omp/WATCHDOG.md" "$HOME/.omp/agent/WATCHDOG.md"
     if command -v omp >/dev/null 2>&1; then
         local omp_model_roles
-        omp_model_roles='{"default":"github-copilot/gpt-5.6-sol:high","smol":"github-copilot/gpt-5.6-luna:low","slow":"github-copilot/gpt-5.6-sol:high","plan":"github-copilot/gpt-5.6-sol:high","advisor":"github-copilot/grok-4.6:high"}'
+        omp_model_roles='{"default":"github-copilot/gpt-6-astra:high","smol":"github-copilot/gpt-5.6-luna:low","slow":"github-copilot/gpt-6-astra:high","plan":"github-copilot/gpt-6-astra:high","advisor":"github-copilot/grok-4.6:high"}'
         omp config set modelRoles "$omp_model_roles"
         omp config set advisor.enabled true
         omp config set advisor.syncBacklog 1

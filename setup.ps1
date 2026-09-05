@@ -98,7 +98,7 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\omp\AGENTS.md" $ompFolder
     Copy-Item -Force "$PSScriptRoot\omp\WATCHDOG.md" $ompFolder
     if (Get-Command omp -ErrorAction SilentlyContinue) {
-        $ompModelRoles = '{"default":"github-copilot/gpt-5.6-sol:high","smol":"github-copilot/gpt-5.6-luna:low","slow":"github-copilot/gpt-5.6-sol:high","plan":"github-copilot/gpt-5.6-sol:high","advisor":"github-copilot/grok-4.6:high"}'
+        $ompModelRoles = '{"default":"github-copilot/gpt-6-astra:high","smol":"github-copilot/gpt-5.6-luna:low","slow":"github-copilot/gpt-6-astra:high","plan":"github-copilot/gpt-6-astra:high","advisor":"github-copilot/grok-4.6:high"}'
         $ompModelRolesArgument = $ompModelRoles
         $nativeArgumentPassing = Get-Variable -Name PSNativeCommandArgumentPassing -ValueOnly -ErrorAction SilentlyContinue
         if ($PSVersionTable.PSEdition -eq 'Desktop' -or $nativeArgumentPassing -eq 'Legacy') {
