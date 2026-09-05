@@ -352,19 +352,10 @@ setup_config() {
     install_config "kilo/AGENTS.md" "$CONFIG_HOME/kilo/AGENTS.md"
     install_config "kilo/agent/review.md" "$CONFIG_HOME/kilo/agent/review.md"
 
-    # OMP keeps sessions and settings alongside config, so copy only tracked guidance
-    # and update the intended settings through its CLI.
+    # OMP keeps sessions and settings alongside its tracked configuration.
     install_config "omp/AGENTS.md" "$HOME/.omp/agent/AGENTS.md"
     install_config "omp/WATCHDOG.md" "$HOME/.omp/agent/WATCHDOG.md"
-    if command -v omp >/dev/null 2>&1; then
-        local omp_model_roles
-        omp_model_roles='{"default":"github-copilot/gpt-6-astra:high","smol":"github-copilot/gpt-5.6-luna:low","slow":"github-copilot/gpt-6-astra:high","plan":"github-copilot/gpt-6-astra:high","advisor":"github-copilot/grok-4.6:high"}'
-        omp config set modelRoles "$omp_model_roles"
-        omp config set advisor.enabled true
-        omp config set advisor.syncBacklog 1
-    else
-        warn "omp not found; copied guidance but skipped OMP model and advisor settings"
-    fi
+    install_config "omp/config.yml" "$HOME/.omp/agent/config.yml"
 
     # nushell
     local nu_dir

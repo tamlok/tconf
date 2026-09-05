@@ -90,30 +90,13 @@ function Setup-Config
     New-Item -ItemType Directory -Force -Path $kiloAgentFolder | Out-Null
     Copy-Item -Force "$PSScriptRoot\kilo\agent\*.md" $kiloAgentFolder
 
-    # OMP keeps sessions and settings alongside config, so copy only tracked guidance
-    # and update the intended settings through its CLI.
+    # OMP keeps sessions and settings alongside its tracked configuration.
     $ompFolder = "$HOME\.omp\agent"
     New-Item -ItemType Directory -Force -Path $ompFolder | Out-Null
     Write-Host "Copying config to $ompFolder"
     Copy-Item -Force "$PSScriptRoot\omp\AGENTS.md" $ompFolder
     Copy-Item -Force "$PSScriptRoot\omp\WATCHDOG.md" $ompFolder
-    if (Get-Command omp -ErrorAction SilentlyContinue) {
-        $ompModelRoles = '{"default":"github-copilot/gpt-6-astra:high","smol":"github-copilot/gpt-5.6-luna:low","slow":"github-copilot/gpt-6-astra:high","plan":"github-copilot/gpt-6-astra:high","advisor":"github-copilot/grok-4.6:high"}'
-        $ompModelRolesArgument = $ompModelRoles
-        $nativeArgumentPassing = Get-Variable -Name PSNativeCommandArgumentPassing -ValueOnly -ErrorAction SilentlyContinue
-        if ($PSVersionTable.PSEdition -eq 'Desktop' -or $nativeArgumentPassing -eq 'Legacy') {
-            # Legacy native argument passing strips unescaped JSON quotes.
-            $ompModelRolesArgument = $ompModelRoles.Replace('"', '\"')
-        }
-        & omp config set modelRoles $ompModelRolesArgument
-        if ($LASTEXITCODE -ne 0) { throw "Failed to configure OMP model roles" }
-        & omp config set advisor.enabled true
-        if ($LASTEXITCODE -ne 0) { throw "Failed to enable the OMP advisor" }
-        & omp config set advisor.syncBacklog 1
-        if ($LASTEXITCODE -ne 0) { throw "Failed to configure OMP advisor synchronization" }
-    } else {
-        Write-Warning "omp not found; copied guidance but skipped OMP model and advisor settings"
-    }
+    Copy-Item -Force "$PSScriptRoot\omp\config.yml" $ompFolder
 
     # GitHub Copilot CLI: only settings.json is tracked. Do NOT clear this folder -
     # it holds live CLI state (config.json, permissions-config.json, session-state/, logs/).

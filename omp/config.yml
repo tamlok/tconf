@@ -1,0 +1,19 @@
+modelRoles:
+  default: github-copilot/gpt-5.6-luna:high
+  smol: github-copilot/gpt-5.6-luna:low
+  slow: github-copilot/gpt-5.6-luna:high
+  plan: github-copilot/gpt-5.6-luna:high
+  advisor: github-copilot/grok-4.6:high
+symbolPreset: unicode
+composer:
+  shape: band
+theme:
+  dark: dark-catppuccin
+setupVersion: 2
+advisor:
+  syncBacklog: "1"
+  enabled: true
+tools:
+  xdev: true
+dev:
+  autoqaConsent: denied
