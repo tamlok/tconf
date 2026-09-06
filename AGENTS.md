@@ -39,11 +39,11 @@ opencode's model discovery doesn't send user headers, so extended models must be
 }
 ```
 
-### 3. Current Model Specs (as of July 2026)
+### 3. Current Model Specs (July 2026; GPT-6 updated September 2026)
 | Model | Context | Input | Output |
 |-------|---------|-------|--------|
 | claude-opus-5 | 1,000,000 | 936,000 | 64,000 |
-| gpt-5.6-sol | 1,050,000 | 922,000 | 128,000 |
+| gpt-6-astra | 1,000,000 | 872,000 | 128,000 |
 | gemini-3.1-pro-preview | 1,000,000 | 936,000 | 64,000 |
 
 ### 4. Establishing ground truth and verifying the config
@@ -171,7 +171,7 @@ rg -o 'fetched models from CAPI /models .*' $log
 ```
 
 The current pin is `claude-sonnet-5` (individual Pro plan: every Opus SKU,
-`claude-fable-5`, `gpt-5.5` and `gpt-5.6-sol` are restricted to
+`claude-fable-5`, `gpt-5.5` and `gpt-6-astra` are restricted to
 `pro_plus`/`business`/`enterprise`/`max`). Re-run the probe whenever the CLI
 auto-updates or entitlements change — the pin goes stale silently.
 
