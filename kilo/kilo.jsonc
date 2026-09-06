@@ -1,14 +1,14 @@
 {
   "$schema": "https://app.kilo.ai/config.json",
-  "model": "github-copilot/gpt-5.6-sol",
+  "model": "github-copilot/gpt-6-astra",
   "small_model": "github-copilot/gpt-5.6-luna",
   "agent": {
     "build": {
-      "model": "github-copilot/gpt-5.6-sol",
+      "model": "github-copilot/gpt-6-astra",
       "variant": "high"
     },
     "plan": {
-      "model": "github-copilot/gpt-5.6-sol",
+      "model": "github-copilot/gpt-6-astra",
       "variant": "high"
     }
   },
@@ -35,15 +35,15 @@
         }
       },
       "models": {
-        "gpt-5.6-sol": {
-          "id": "gpt-5.6-sol",
-          "name": "GPT-5.6 Sol",
+        "gpt-6-astra": {
+          "id": "gpt-6-astra",
+          "name": "GPT-6 Astra",
           "reasoning": true,
           "attachment": true,
           "tool_call": true,
           "limit": {
-            "context": 1050000,
-            "input": 922000,
+            "context": 1000000,
+            "input": 872000,
             "output": 128000
           }
         },
