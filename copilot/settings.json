@@ -1,5 +1,5 @@
 {
-  "model": "claude-sonnet-5",
+  "model": "gpt-6-astra",
   "effortLevel": "high",
   "contextTier": "long_context",
   "stayInAutopilot": true,
