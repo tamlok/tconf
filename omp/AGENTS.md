@@ -18,6 +18,7 @@ You MUST follow this workflow strictly:
 16. Keep the continuous OMP advisor enabled for an independent second opinion while planning and implementing non-trivial changes
 17. Address advisor concerns and blockers before treating a plan or non-trivial implementation as complete
 18. Prefer PlantUML to Mermaid by default when drawing diagrams
+19. Prefer rebase to merge when asked to push
 
 ## The OMP advisor
 
