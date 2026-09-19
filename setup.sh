@@ -354,7 +354,9 @@ setup_config() {
 
     # OMP keeps sessions and settings alongside its tracked configuration.
     install_config "omp/AGENTS.md" "$HOME/.omp/agent/AGENTS.md"
-    install_config "omp/WATCHDOG.md" "$HOME/.omp/agent/WATCHDOG.md"
+    install_config "omp/agents/checkpoint-reviewer.md" "$HOME/.omp/agent/agents/checkpoint-reviewer.md"
+    # Remove the retired continuous-advisor guidance, leaving other OMP state intact.
+    rm -f "$HOME/.omp/agent/WATCHDOG.md"
     install_config "omp/config.yml" "$HOME/.omp/agent/config.yml"
 
     # nushell

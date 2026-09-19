@@ -95,7 +95,13 @@ function Setup-Config
     New-Item -ItemType Directory -Force -Path $ompFolder | Out-Null
     Write-Host "Copying config to $ompFolder"
     Copy-Item -Force "$PSScriptRoot\omp\AGENTS.md" $ompFolder
-    Copy-Item -Force "$PSScriptRoot\omp\WATCHDOG.md" $ompFolder
+    $ompAgentFolder = "$ompFolder\agents"
+    New-Item -ItemType Directory -Force -Path $ompAgentFolder | Out-Null
+    Copy-Item -Force "$PSScriptRoot\omp\agents\checkpoint-reviewer.md" $ompAgentFolder
+    # Remove the retired continuous-advisor guidance, leaving other OMP state intact.
+    if (Test-Path -LiteralPath "$ompFolder\WATCHDOG.md") {
+        Remove-Item -LiteralPath "$ompFolder\WATCHDOG.md" -Force -ErrorAction Stop
+    }
     Copy-Item -Force "$PSScriptRoot\omp\config.yml" $ompFolder
 
     # GitHub Copilot CLI: only settings.json is tracked. Do NOT clear this folder -

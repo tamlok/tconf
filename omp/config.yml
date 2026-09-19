@@ -11,8 +11,7 @@ theme:
   dark: dark-catppuccin
 setupVersion: 2
 advisor:
-  syncBacklog: "1"
-  enabled: true
+  enabled: false
 tools:
   xdev: true
 dev:
