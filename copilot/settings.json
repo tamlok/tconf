@@ -1,4 +1,5 @@
 {
+  "theme": "default",
   "model": "gpt-6-astra",
   "effortLevel": "high",
   "contextTier": "long_context",
