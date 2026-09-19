@@ -5,7 +5,7 @@ You MUST follow this workflow strictly:
 3. Never use absolute paths (no C:\, /home, etc)
 4. Assume the repository root is the current working directory
 5. All patches MUST use unified diff format with paths relative to repo root
-6. If a file does not exist, STOP and explain instead of inventing it
+6. If a file does not exist, STOP and explain instead of inventing it. New files explicitly listed in an approved implementation plan may be created.
 7. Keep diffs minimal and only touch files that are explicitly listed
 8. Do not truncate paths. Do not guess directory names
 9. If unsure, ask a clarification question BEFORE generating a patch
