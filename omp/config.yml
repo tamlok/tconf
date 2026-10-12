@@ -1,8 +1,8 @@
 modelRoles:
-  default: github-copilot/gpt-6-astra:high
+  default: github-copilot/gpt-6-astra-1m:high
   smol: github-copilot/gpt-5.6-luna:low
-  slow: github-copilot/gpt-6-astra:high
-  plan: github-copilot/gpt-6-astra:high
+  slow: github-copilot/gpt-6-astra-1m:high
+  plan: github-copilot/gpt-6-astra-1m:high
   advisor: github-copilot/grok-4.6:high
 symbolPreset: unicode
 composer:
