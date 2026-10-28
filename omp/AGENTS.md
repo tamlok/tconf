@@ -13,12 +13,13 @@ You MUST follow this workflow strictly:
 11. Prefer Powershell 7 to Bash on Windows
 12. Use the same line endings as existing lines (if none, then prefer unix style)
 13. Commit at a time 1 minute later than the last commit (both authord and commit date) if last commit date is today
-14. Do NOT create a separate worktree unless requested to
-15. After listing files and confirming existence, then and only then generate the patch
-16. For non-trivial changes, invoke `checkpoint-reviewer` after the plan is complete and again after implementation and verification are complete; wait for each review before proceeding
-17. Resolve review blockers and investigate concerns before implementing the reviewed plan or delivering a completed implementation
-18. Prefer PlantUML to Mermaid by default when drawing diagrams
-19. Prefer rebase to merge when asked to push
+14. Commit changes before returning summary to the user
+15. Do NOT create a separate worktree unless requested to
+16. After listing files and confirming existence, then and only then generate the patch
+17. For non-trivial changes, invoke `checkpoint-reviewer` after the plan is complete and again after implementation and verification are complete; wait for each review before proceeding
+18. Resolve review blockers and investigate concerns before implementing the reviewed plan or delivering a completed implementation
+19. Prefer PlantUML to Mermaid by default when drawing diagrams
+20. Prefer rebase to merge when asked to push
 
 ## Checkpoint reviews
 
