@@ -26,19 +26,6 @@ function Remove-If-Link
     }
 }
 
-# Remove a directory junction/symlink so it can be replaced with a real directory
-function Remove-If-Junction
-{
-    Param([string]$path)
-    if (-Not (Test-Path -Path $path)) { return }
-    $item = Get-Item -Path $path -Force
-    if ($item.Attributes -band [System.IO.FileAttributes]::ReparsePoint) {
-        Write-Host "Removing old junction: $path"
-        # Remove only the junction link itself, not the target contents
-        $item.Delete()
-    }
-}
-
 function Setup-Config
 {
     # Individual config files - ensure parent directories exist, use $PSScriptRoot for sources
@@ -46,49 +33,12 @@ function Setup-Config
     Remove-If-Link "$HOME\.wezterm.lua"
     Copy-Item -Force "$PSScriptRoot\wezterm.lua" "$HOME\.wezterm.lua"
 
-    $terminalFolder = "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState"
-    if (Test-Path -Path "$env:LocalAppData\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe") {
-        New-Item -ItemType Directory -Force -Path $terminalFolder | Out-Null
-        Remove-If-Link "$terminalFolder\settings.json"
-        Copy-Item -Force "$PSScriptRoot\terminal\settings.json" "$terminalFolder\settings.json"
-    }
-
     $nushellFolder = "$HOME\AppData\Roaming\nushell"
     New-Item -ItemType Directory -Force -Path $nushellFolder | Out-Null
     Remove-If-Link "$nushellFolder\env.nu"
     Copy-Item -Force "$PSScriptRoot\nushell\env.nu" "$nushellFolder\env.nu"
     Remove-If-Link "$nushellFolder\config.nu"
     Copy-Item -Force "$PSScriptRoot\nushell\config.nu" "$nushellFolder\config.nu"
-
-    # Directory configs - remove old junctions/symlinks, then copy tracked config files only
-    $claudeFolder = "$env:USERPROFILE\.claude"
-    Remove-If-Junction $claudeFolder
-    New-Item -ItemType Directory -Force -Path $claudeFolder | Out-Null
-    Write-Host "Copying config to $claudeFolder"
-    Copy-Item -Force "$PSScriptRoot\claude\CLAUDE.md" $claudeFolder
-    Copy-Item -Force "$PSScriptRoot\claude\settings.json" $claudeFolder
-
-    $configFolder = "$env:USERPROFILE\.config"
-    New-Item -ItemType Directory -Force -Path $configFolder | Out-Null
-    $opencodeFolder = "$configFolder\opencode"
-    Remove-If-Junction $opencodeFolder
-    New-Item -ItemType Directory -Force -Path $opencodeFolder | Out-Null
-    Write-Host "Copying config to $opencodeFolder"
-    Copy-Item -Force "$PSScriptRoot\opencode\AGENTS.md" $opencodeFolder
-    Copy-Item -Force "$PSScriptRoot\opencode\oh-my-openagent.json" $opencodeFolder
-    Copy-Item -Force "$PSScriptRoot\opencode\opencode.json" $opencodeFolder
-
-    $kiloFolder = "$configFolder\kilo"
-    Remove-If-Junction $kiloFolder
-    New-Item -ItemType Directory -Force -Path $kiloFolder | Out-Null
-    Write-Host "Copying config to $kiloFolder"
-    # Remove leftover kilo.json from before the rename (it would still merge under kilo.jsonc)
-    Remove-Item -Force "$kiloFolder\kilo.json" -ErrorAction SilentlyContinue
-    Copy-Item -Force "$PSScriptRoot\kilo\kilo.jsonc" $kiloFolder
-    Copy-Item -Force "$PSScriptRoot\kilo\AGENTS.md" $kiloFolder
-    $kiloAgentFolder = "$kiloFolder\agent"
-    New-Item -ItemType Directory -Force -Path $kiloAgentFolder | Out-Null
-    Copy-Item -Force "$PSScriptRoot\kilo\agent\*.md" $kiloAgentFolder
 
     # OMP keeps sessions and settings alongside its tracked configuration.
     $ompFolder = "$HOME\.omp\agent"

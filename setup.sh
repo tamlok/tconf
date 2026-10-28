@@ -345,13 +345,6 @@ setup_config() {
     # wezterm
     install_config "wezterm.lua" "$CONFIG_HOME/wezterm/wezterm.lua"
 
-    # kilo
-    # Remove leftover kilo.json from before the rename (it would still merge under kilo.jsonc)
-    rm -f "$CONFIG_HOME/kilo/kilo.json"
-    install_config "kilo/kilo.jsonc" "$CONFIG_HOME/kilo/kilo.jsonc"
-    install_config "kilo/AGENTS.md" "$CONFIG_HOME/kilo/AGENTS.md"
-    install_config "kilo/agent/review.md" "$CONFIG_HOME/kilo/agent/review.md"
-
     # OMP keeps sessions and settings alongside its tracked configuration.
     install_config "omp/AGENTS.md" "$HOME/.omp/agent/AGENTS.md"
     install_config "omp/agents/checkpoint-reviewer.md" "$HOME/.omp/agent/agents/checkpoint-reviewer.md"
@@ -365,17 +358,8 @@ setup_config() {
     install_config "nushell/env.nu" "$nu_dir/env.nu"
     install_config "nushell/config.nu" "$nu_dir/config.nu"
 
-    # claude
-    install_config "claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-    install_config "claude/settings.json" "$HOME/.claude/settings.json"
-
     # copilot CLI (~/.copilot is not XDG-based)
     install_config "copilot/settings.json" "$HOME/.copilot/settings.json"
-
-    # opencode
-    install_config "opencode/AGENTS.md" "$CONFIG_HOME/opencode/AGENTS.md"
-    install_config "opencode/oh-my-openagent.json" "$CONFIG_HOME/opencode/oh-my-openagent.json"
-    install_config "opencode/opencode.json" "$CONFIG_HOME/opencode/opencode.json"
 
     # zellij
     install_config "zellij/config.kdl" "$CONFIG_HOME/zellij/config.kdl"
