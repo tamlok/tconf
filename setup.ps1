@@ -69,6 +69,11 @@ function Setup-Config
     Copy-Item -Force "$PSScriptRoot\zellij\config.kdl" $zellijFolder
     New-Item -ItemType Directory -Force -Path $zellijLayoutFolder | Out-Null
     Copy-Item -Force "$PSScriptRoot\zellij\l_*.kdl" $zellijLayoutFolder
+
+    $herdrFolder = "$env:APPDATA\herdr"
+    New-Item -ItemType Directory -Force -Path $herdrFolder | Out-Null
+    Remove-If-Link "$herdrFolder\config.toml"
+    Copy-Item -Force "$PSScriptRoot\herdr\config.toml" "$herdrFolder\config.toml"
 }
 
 function Setup-Env
@@ -126,6 +131,8 @@ function Main
     }
 
     Scoop-Install -command "nu" -package "nu"
+
+    Scoop-Install -command "herdr" -package "herdr"
 
     # Scoop-Install -command "wezterm" -package "wezterm-nightly"
 

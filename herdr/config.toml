@@ -1,0 +1,9 @@
+[terminal]
+default_shell = "nu"
+
+[keys]
+prefix = "ctrl+g"
+last_pane = "prefix+0"
+
+[experimental]
+pane_history = true

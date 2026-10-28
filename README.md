@@ -19,8 +19,16 @@ configs. Claude, Kilo, OpenCode, and Windows Terminal configs are no longer
 managed; existing copies are left untouched.
 
 Omit `-Action config` (Windows) or `config` (Linux/macOS) to also run the existing
-package/tool and font installation steps. Package choices are unchanged.
+package/tool and font installation steps.
 The Linux/macOS config action also sets the global Git name and email.
+
+## Herdr (Windows)
+
+Full Windows setup installs Herdr via Scoop (`scoop install herdr`). Both full
+setup and `-Action config` copy `herdr/config.toml` to
+`%APPDATA%\herdr\config.toml`; config-only setup does not install Herdr.
+New panes use `nu`. The prefix is `Ctrl+G`; press `0` after it to switch to the
+last pane. Experimental pane history is enabled. Zellij remains configured.
 
 ## OMP
 
