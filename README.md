@@ -27,8 +27,14 @@ The Linux/macOS config action also sets the global Git name and email.
 Full Windows setup installs Herdr via Scoop (`scoop install herdr`). Both full
 setup and `-Action config` copy `herdr/config.toml` to
 `%APPDATA%\herdr\config.toml`; config-only setup does not install Herdr.
-New panes use `nu`. The prefix is `Ctrl+G`; press `0` after it to switch to the
-last pane. Experimental pane history is enabled. Zellij remains configured.
+New panes use `nu` and start in the user home directory (`terminal.new_cwd = "~"`).
+Use `"~"`, not `"home"`: Herdr 0.9.5's `"home"` policy only checks `HOME`, which
+may be unset on Windows; tilde expansion resolves `USERPROFILE` instead.
+After deploying, run `herdr server reload-config`. Existing panes keep their
+current directory.
+
+The prefix is `Ctrl+G`; press `0` after it to switch to the last pane.
+Experimental pane history is enabled. Zellij remains configured.
 
 ## OMP
 

@@ -1,5 +1,6 @@
 [terminal]
 default_shell = "nu"
+new_cwd = "~"
 
 [keys]
 prefix = "ctrl+g"
