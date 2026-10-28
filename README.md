@@ -33,7 +33,17 @@ may be unset on Windows; tilde expansion resolves `USERPROFILE` instead.
 After deploying, run `herdr server reload-config`. Existing panes keep their
 current directory.
 
-The prefix is `Ctrl+G`; press `0` after it to switch to the last pane.
+The prefix is `Ctrl+G`:
+
+| Shortcut | Action |
+|---|---|
+| `prefix+t` | New tab |
+| `prefix+y` | Copy mode |
+| `prefix+[` | Previous agent |
+| `prefix+]` | Next agent |
+| `prefix+shift+1..9` | Focus agent 1–9 |
+| `prefix+0` | Last pane |
+
 Experimental pane history is enabled. Zellij remains configured.
 
 ## OMP

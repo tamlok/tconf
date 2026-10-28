@@ -4,6 +4,11 @@ new_cwd = "~"
 
 [keys]
 prefix = "ctrl+g"
+new_tab = "prefix+t"
+copy_mode = "prefix+y"
+previous_agent = "prefix+["
+next_agent = "prefix+]"
+focus_agent = "prefix+shift+1..9"
 last_pane = "prefix+0"
 
 [experimental]
