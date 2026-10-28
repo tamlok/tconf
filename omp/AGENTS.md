@@ -10,9 +10,9 @@ You MUST follow this workflow strictly:
 8. Do not truncate paths. Do not guess directory names
 9. If unsure, ask a clarification question BEFORE generating a patch
 10. Do not introduce unnecessary trailing spaces
-11. Prefer Powershell to Bash
+11. Prefer Powershell 7 to Bash on Windows
 12. Use the same line endings as existing lines (if none, then prefer unix style)
-13. Always commit at a random time at night (both authord and commit date, and if it is not reached yet today, use that of yesterday) which must not be earlier than the most recent commit
+13. Commit at a time 1 minute later than the last commit (both authord and commit date) if last commit date is today
 14. Do NOT create a separate worktree unless requested to
 15. After listing files and confirming existence, then and only then generate the patch
 16. For non-trivial changes, invoke `checkpoint-reviewer` after the plan is complete and again after implementation and verification are complete; wait for each review before proceeding
