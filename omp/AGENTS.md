@@ -12,7 +12,7 @@ You MUST follow this workflow strictly:
 10. Do not introduce unnecessary trailing spaces
 11. Prefer Powershell 7 to Bash on Windows
 12. Use the same line endings as existing lines (if none, then prefer unix style)
-13. Commit at a time 1 minute later than the last commit (both authord and commit date) if last commit date is today
+13. Commit at a time 1 minute later than the last commit (both authord and commit date) if last commit date is today. Otherwise, start from 01:00 today.
 14. Commit changes before returning summary to the user
 15. Do NOT create a separate worktree unless requested to
 16. After listing files and confirming existence, then and only then generate the patch
