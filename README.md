@@ -40,6 +40,8 @@ The prefix is `Ctrl+G`:
 |---|---|
 | `prefix+t` | New tab |
 | `prefix+y` | Copy mode |
+| `prefix+shift+[` | Previous workspace |
+| `prefix+shift+]` | Next workspace |
 | `prefix+[` | Previous agent |
 | `prefix+]` | Next agent |
 | `prefix+shift+1..9` | Focus agent 1–9 |
