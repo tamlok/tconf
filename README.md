@@ -52,8 +52,12 @@ Experimental pane history is enabled. Zellij remains configured.
 ## OMP
 
 `omp/config.yml` uses `github-copilot/gpt-6-astra-1m:high` for the `default`,
-`slow`, and `plan` roles. The `smol` and `advisor` selections are unchanged;
-the continuous advisor remains disabled.
+`slow`, and `plan` roles. The checkpoint reviewer uses
+`github-copilot/grok-4.7-1m:high` via the `advisor` role. The `smol` selection
+is unchanged; the continuous advisor remains disabled.
 
 Verified on 2026-10-13 with `omp models refresh`,
 `omp models find gpt-6-astra --json`, and successful live prompts.
+
+Reviewer verified on 2026-11-01 with `omp models find grok --json` and a
+successful live `@advisor` prompt using `--config omp/config.yml`.

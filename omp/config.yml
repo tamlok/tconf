@@ -3,7 +3,7 @@ modelRoles:
   smol: github-copilot/gpt-5.6-luna:low
   slow: github-copilot/gpt-6-astra-1m:high
   plan: github-copilot/gpt-6-astra-1m:high
-  advisor: github-copilot/grok-4.6:high
+  advisor: github-copilot/grok-4.7-1m:high
 symbolPreset: unicode
 composer:
   shape: band
