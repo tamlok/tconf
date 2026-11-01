@@ -1,5 +1,8 @@
 onboarding = false
 
+[ui]
+pane_scrollbars = false
+
 [terminal]
 default_shell = "nu"
 new_cwd = "~"

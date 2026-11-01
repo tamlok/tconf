@@ -28,6 +28,7 @@ Full Windows setup installs Herdr via Scoop (`scoop install herdr`). Both full
 setup and `-Action config` copy `herdr/config.toml` to
 `%APPDATA%\herdr\config.toml`; config-only setup does not install Herdr.
 First-launch welcome/setup is disabled with top-level `onboarding = false`.
+Pane scrollbars are disabled with `ui.pane_scrollbars = false`.
 New panes use `nu` and start in the user home directory (`terminal.new_cwd = "~"`).
 Use `"~"`, not `"home"`: Herdr 0.9.5's `"home"` policy only checks `HOME`, which
 may be unset on Windows; tilde expansion resolves `USERPROFILE` instead.
