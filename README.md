@@ -20,6 +20,8 @@ managed; existing copies are left untouched.
 
 Omit `-Action config` (Windows) or `config` (Linux/macOS) to also run the existing
 package/tool and font installation steps.
+Full setup no longer installs or upgrades Kilo or OpenCode; existing installations
+are left untouched.
 Full setup includes the SQLite CLI: Scoop's `sqlite` on Windows, `sqlite3` on
 Ubuntu, and Homebrew's `sqlite` on macOS. Config-only setup does not install it.
 Homebrew's formula is keg-only; setup does not change PATH to override macOS's

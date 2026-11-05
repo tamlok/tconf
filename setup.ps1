@@ -78,7 +78,7 @@ function Setup-Config
 
 function Setup-Env
 {
-    # Opencode uses `EDITOR` environment variable to detect the editor
+    # Default editor for command-line tools
     setx EDITOR "nvim"
 
     # Add neovim mason bin to user PATH
@@ -144,8 +144,6 @@ function Main
 
     Scoop-Install -command "sqlite3" -package "sqlite"
 
-    Scoop-Install -command "opencode" -package "opencode"
-
     # oh-my-pi coding agent; the `oh-my-pi` manifest in the main bucket ships
     # the `omp` shim, so the command name differs from the package name.
     Scoop-Install -command "omp" -package "oh-my-pi"
@@ -185,16 +183,10 @@ function Main
 
     # winget install Microsoft.Coreutils
 
-    # Kilo CLI requires node/npm. Install node first, then the CLI via npm.
+    # Node.js/npm for development tools.
     $newNode = Scoop-Install -command "node" -package "nodejs"
     if ($newNode) {
         Refresh-Env
-    }
-    if (Check-Command-Exists "npm") {
-        Write-Host "Installing/upgrading kilo CLI (@kilocode/cli)"
-        npm install -g @kilocode/cli
-    } else {
-        Write-Host "npm not found; skipping kilo CLI install"
     }
 
     # Install code graph

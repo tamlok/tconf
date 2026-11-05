@@ -126,8 +126,6 @@ ubuntu_pkg_install() {
 # Tools not in Ubuntu's default repos, installed via their documented methods.
 ubuntu_install_tools() {
     install_neovim            # official prebuilt release (apt's is too old)
-    # install_opencode          # official install script (disabled)
-    install_kilo              # kilo CLI via npm (@kilocode/cli)
     install_omp               # oh-my-pi coding agent (omp.sh install script)
     ubuntu_install_nushell    # official apt.fury.io repository
     install_zellij            # cargo (recommended) or prebuilt binary
@@ -189,13 +187,6 @@ macos_pkg_install() {
 
 # On macOS everything is available via Homebrew (the documented method).
 macos_install_tools() {
-    # opencode installation disabled (using kilo instead)
-    # if ! command -v opencode >/dev/null 2>&1; then
-    #     log "Installing opencode via Homebrew"
-    #     brew install anomalyco/tap/opencode || warn "opencode install failed"
-    # else
-    #     log "opencode already installed"
-    # fi
     if ! command -v nu >/dev/null 2>&1; then
         log "Installing nushell via Homebrew"
         brew install nushell || warn "nushell install failed"
@@ -208,7 +199,6 @@ macos_install_tools() {
     else
         log "zellij already installed"
     fi
-    install_kilo    # kilo CLI via npm (@kilocode/cli)
     install_omp     # oh-my-pi coding agent (omp.sh install script)
 }
 
@@ -217,32 +207,6 @@ macos_install_tools() {
 # Each is idempotent: skips if the command already exists.
 # --------------------------------------------------------------------------
 LOCAL_BIN="$HOME/.local/bin"
-
-# https://opencode.ai/docs  (official install script, cross-platform)
-# Always lands on the latest release: upgrades in place if already present,
-# otherwise installs fresh via the official website script.
-install_opencode() {
-    if command -v opencode >/dev/null 2>&1; then
-        log "Upgrading opencode to the latest version"
-        opencode upgrade || warn "opencode upgrade failed"
-        return 0
-    fi
-    log "Installing latest opencode"
-    curl -fsSL https://opencode.ai/install | bash || warn "opencode install failed"
-}
-
-# https://kilo.ai/docs/getting-started/installing (CLI)
-# Installs/updates the Kilo CLI globally via npm. Requires node/npm, which is
-# installed by pkg_install (generic name "node"). Idempotent: npm -g reinstall
-# lands on the latest published version.
-install_kilo() {
-    if ! command -v npm >/dev/null 2>&1; then
-        warn "npm not found; skipping kilo CLI install"
-        return 0
-    fi
-    log "Installing/upgrading kilo CLI (@kilocode/cli)"
-    npm install -g @kilocode/cli || warn "kilo CLI install failed"
-}
 
 # https://omp.sh  (official install script, macOS + Linux)
 # Installs the `omp` binary into the user's local bin. Idempotent: skips when
@@ -406,7 +370,7 @@ ensure_line_in_file() {
 
 setup_env() {
     local rc="$HOME/.bashrc"
-    # opencode uses EDITOR to detect the editor.
+    # Default editor for command-line tools.
     ensure_line_in_file 'export EDITOR=nvim' "$rc"
     # Make ~/.local/bin and neovim mason binaries available.
     ensure_line_in_file 'export PATH="$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin:$PATH"' "$rc"
@@ -429,7 +393,7 @@ main() {
     pkg_bootstrap
     pkg_install neovim ripgrep ctags gtags sqlite3 python node git fontconfig
 
-    # Tools not in the default repos (opencode, nushell, zellij),
+    # Tools not in the default repos (omp, nushell, zellij),
     # installed via each platform's recommended method.
     pkg_install_tools
 

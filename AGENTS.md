@@ -228,10 +228,10 @@ unsupported `PLATFORM` fails fast with a message naming the functions to add.
 3. `<id>_pkg_install <generic>...` — translate generics via `<id>_pkg_name` and
    install them with the distro's package manager.
 4. `<id>_install_tools` — install tools not in the default repos
-   (`opencode`, `nushell`, `zellij`) using each project's documented method.
+   (`omp`, `nushell`, `zellij`) using each project's documented method.
 
 ### Guidelines
-- Reuse the shared helpers `install_opencode` (official install script) and
+- Reuse the shared helpers `install_omp` (official install script) and
   `install_zellij` (cargo `--locked`, then prebuilt-binary fallback) where the
   distro has no native package.
 - Prefer the upstream project's officially documented install command; verify it
