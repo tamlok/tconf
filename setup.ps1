@@ -142,6 +142,8 @@ function Main
 
     Scoop-Install -command "ctags" -package "universal-ctags"
 
+    Scoop-Install -command "sqlite3" -package "sqlite"
+
     Scoop-Install -command "opencode" -package "opencode"
 
     # oh-my-pi coding agent; the `oh-my-pi` manifest in the main bucket ships

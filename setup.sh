@@ -101,6 +101,7 @@ ubuntu_pkg_name() {
         ripgrep)    echo "ripgrep" ;;
         ctags)      echo "universal-ctags" ;;
         gtags)      echo "global" ;;
+        sqlite3)    echo "sqlite3" ;;
         python)     echo "python3 python3-pip python3-venv" ;;
         node)       echo "nodejs npm" ;;
         git)        echo "git" ;;
@@ -164,6 +165,7 @@ macos_pkg_name() {
         ripgrep)    echo "ripgrep" ;;
         ctags)      echo "universal-ctags" ;;
         gtags)      echo "global" ;;
+        sqlite3)    echo "sqlite" ;;
         python)     echo "python" ;;
         node)       echo "node" ;;
         git)        echo "git" ;;
@@ -425,7 +427,7 @@ main() {
     fi
 
     pkg_bootstrap
-    pkg_install neovim ripgrep ctags gtags python node git fontconfig
+    pkg_install neovim ripgrep ctags gtags sqlite3 python node git fontconfig
 
     # Tools not in the default repos (opencode, nushell, zellij),
     # installed via each platform's recommended method.
