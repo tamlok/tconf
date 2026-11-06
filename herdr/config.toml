@@ -2,6 +2,8 @@ onboarding = false
 
 [ui]
 pane_scrollbars = false
+mouse_capture = false
+copy_on_select = false
 
 [terminal]
 default_shell = "nu"
@@ -10,7 +12,7 @@ new_cwd = "~"
 [keys]
 prefix = "ctrl+g"
 new_tab = "prefix+t"
-copy_mode = "prefix+y"
+copy_mode = ""
 previous_workspace = "prefix+shift+["
 next_workspace = "prefix+shift+]"
 previous_agent = "prefix+["
