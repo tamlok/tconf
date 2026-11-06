@@ -35,11 +35,10 @@ setup and `-Action config` copy `herdr/config.toml` to
 `%APPDATA%\herdr\config.toml`; config-only setup does not install Herdr.
 First-launch welcome/setup is disabled with top-level `onboarding = false`.
 Pane scrollbars are disabled with `ui.pane_scrollbars = false`.
-Selection and copying use the host terminal: `ui.mouse_capture = false` and
-`ui.copy_on_select = false`. Herdr's copy-mode shortcut is explicitly unbound
-with `keys.copy_mode = ""`; use the terminal's normal selection/copy shortcuts.
-This also disables Herdr's mouse UI (tabs, sidebar, pane resizing and menus).
-Pane apps can still request mouse input; use the terminal's override in those apps.
+Herdr's mouse UI remains enabled with `ui.mouse_capture = true`.
+Automatic copying is disabled with `ui.copy_on_select = false`: drag or
+double-click selections remain until `Ctrl+C` (or `Cmd+C` when forwarded by
+the host terminal) copies and clears them.
 New panes use `nu` and start in the user home directory (`terminal.new_cwd = "~"`).
 Use `"~"`, not `"home"`: Herdr 0.9.5's `"home"` policy only checks `HOME`, which
 may be unset on Windows; tilde expansion resolves `USERPROFILE` instead.
@@ -51,6 +50,7 @@ The prefix is `Ctrl+G`:
 | Shortcut | Action |
 |---|---|
 | `prefix+t` | New tab |
+| `prefix+y` | Copy mode |
 | `prefix+shift+[` | Previous workspace |
 | `prefix+shift+]` | Next workspace |
 | `prefix+[` | Previous agent |
