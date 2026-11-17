@@ -51,12 +51,16 @@ The prefix is `Ctrl+G`:
 |---|---|
 | `prefix+t` | New tab |
 | `prefix+y` | Copy mode |
-| `prefix+shift+[` | Previous workspace |
-| `prefix+shift+]` | Next workspace |
+| `prefix+{` | Previous workspace |
+| `prefix+}` | Next workspace |
 | `prefix+[` | Previous agent |
 | `prefix+]` | Next agent |
 | `prefix+shift+1..9` | Focus agent 1–9 |
 | `prefix+0` | Last pane |
+
+Workspace bindings use literal braces because terminals may report `{` / `}`
+rather than Shift plus a bracket. On a US layout, press `Ctrl+G`, release Ctrl,
+then press `Shift+[` or `Shift+]`.
 
 Experimental pane history is enabled. Zellij remains configured.
 
